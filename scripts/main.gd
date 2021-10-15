@@ -10,8 +10,13 @@ func _ready():
 	add_meteor(Vector2(100, 200), 200)
 
 
+func _on_meteor_collision():
+	print("A meteorite hit the space station")
+
+
 func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
 	var m = Meteor.instance()
+	m.connect("hit", self, "_on_meteor_collision")
 	m.velocity = v
 	m.global_position = pos
 	add_child(m)
