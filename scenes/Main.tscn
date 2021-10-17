@@ -34,5 +34,6 @@ text = "HP: XXX"
 position = Vector2( 1021.85, 296.665 )
 
 [node name="RotatingPlatform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 688.777, 268.303 )
+position = Vector2( 689.191, 264.475 )
+radius = 100
 rotational_velocity = 6.28
