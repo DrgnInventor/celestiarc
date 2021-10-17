@@ -1,8 +1,12 @@
 tool
 extends Node2D
+# Note: Comments with "because trigonometry" explain compensation for Godot's
+# rotation which goes clockwise unlike in trigonometry where rotation goes
+# counterclowise
 
 export var radius = 100 setget set_radius
 export var rotational_velocity = 1.07 setget set_rotational_velocity
+export var rotational_offset = 0.00 setget set_rotational_offset
 onready var collider = $Collider
 onready var orbit_line = $OrbitLine
 
@@ -15,7 +19,8 @@ func _ready():
 
 func _physics_process(delta):
 	if not Engine.editor_hint:
-		rotation += rotational_velocity * delta
+		# Minus because trigonometry
+		rotation -= rotational_velocity * delta
 
 
 # This is needed for tool because it sometimes runs scripts before it's ready
@@ -26,6 +31,8 @@ func is_ready():
 func tool_refresh():
 	if Engine.editor_hint and is_ready():
 		collider.position.x = radius
+		# Minus because trigonometry
+		rotation = -rotational_offset
 		refresh_orbit()
 
 
@@ -45,4 +52,9 @@ func set_radius(value):
 
 func set_rotational_velocity(value):
 	rotational_velocity = value
+	tool_refresh()
+
+
+func set_rotational_offset(value):
+	rotational_offset = value
 	tool_refresh()
