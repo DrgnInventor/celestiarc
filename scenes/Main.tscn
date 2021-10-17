@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/SpaceStation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/main.gd" type="Script" id=2]
+[ext_resource path="res://scenes/RotatingPlatform.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -31,3 +32,7 @@ text = "HP: XXX"
 
 [node name="SpaceStation" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1021.85, 296.665 )
+
+[node name="RotatingPlatform" parent="." instance=ExtResource( 3 )]
+position = Vector2( 688.777, 268.303 )
+rotational_velocity = 6.28

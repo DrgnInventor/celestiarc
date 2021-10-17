@@ -7,8 +7,11 @@ export var velocity = 100
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * direction_vector * delta)
-	if collision and _is_space_station(collision.get_collider()):
-		emit_signal("hit")
+
+	if collision:
+		if _is_space_station(collision.get_collider()):
+			emit_signal("hit")
+
 		queue_free()
 
 
