@@ -1,6 +1,8 @@
 extends Node2D
 
 const Meteor = preload("res://scenes/Meteor.tscn")
+const Helpers = preload("res://scripts/helpers.gd")
+onready var hud = $HUD
 onready var hp_label = $HUD/Panel/HpLabel
 onready var space_station = $SpaceStation
 
@@ -30,5 +32,14 @@ func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
 	add_child(m)
 	return m
 
+
 func refresh_hp_label() -> void:
 	hp_label.text = "HP: %03d" % space_station.current_hp
+
+
+func px_to_canon_coord(coord: Vector2) -> Vector2:
+	return Helpers.px_to_canon_coord(coord, OS.window_size.y, hud.rect_size.y)
+
+
+func canon_to_px_coord(coord: Vector2) -> Vector2:
+	return Helpers.canon_to_px_coord(coord, OS.window_size.y, hud.rect_size.y)
