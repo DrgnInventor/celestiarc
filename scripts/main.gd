@@ -4,7 +4,6 @@ var Meteor = load("res://scenes/Meteor.tscn")
 var Helpers = load("res://scripts/helpers.gd")
 var is_table_active = false
 onready var hud = $HUD
-onready var hp_label = $HUD/Panel/HpLabel
 onready var space_station = $SpaceStation
 onready var meteor_platform_table = $MeteorPlatformTable
 
@@ -46,7 +45,7 @@ func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
 
 
 func refresh_hp_label() -> void:
-	hp_label.text = "HP: %03d" % space_station.current_hp
+	hud.set_hp_label(space_station.current_hp)
 
 
 func show_table() -> void:
