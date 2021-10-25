@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Helpers",
 "language": "GDScript",
 "path": "res://scripts/helpers.gd"
+}, {
+"base": "Node",
+"class": "coord_util",
+"language": "GDScript",
+"path": "res://scripts/coord_util.gd"
 } ]
 _global_script_class_icons={
-"Helpers": ""
+"Helpers": "",
+"coord_util": ""
 }
 
 [application]
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="celestiarc"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+CoordUtil="*res://scripts/coord_util.gd"
 
 [rendering]
 

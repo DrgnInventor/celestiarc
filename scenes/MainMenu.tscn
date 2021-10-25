@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://resources/DefaultLabelFont.tres" type="DynamicFont" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/transpass/Transpass-Bold.ttf"
@@ -8,12 +9,6 @@ font_path = "res://assets/fonts/transpass/Transpass-Bold.ttf"
 [sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = SubResource( 1 )
-
-[sub_resource type="DynamicFontData" id=3]
-font_path = "res://assets/fonts/transpass/Transpass-Light.ttf"
-
-[sub_resource type="DynamicFont" id=4]
-font_data = SubResource( 3 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -54,14 +49,14 @@ text = "celestiarc"
 margin_top = 80.0
 margin_right = 282.0
 margin_bottom = 105.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
 [node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 110.0
 margin_right = 282.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 2 )
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
