@@ -1,6 +1,6 @@
 extends Control
 
-onready var hp_label = $Panel/HpLabel
+onready var hp_label = $Panel/HBoxContainer/HpLabel
 
 
 func set_hp_label(hp: int) -> void:
