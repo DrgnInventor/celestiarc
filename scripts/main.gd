@@ -33,6 +33,11 @@ func _ready():
 	)
 
 
+func _process(_delta: float):
+	if Input.is_action_just_pressed("ui_cancel"):
+		hide_overlay()
+
+
 func _on_meteor_collision():
 	space_station.hit(10)
 
@@ -63,7 +68,7 @@ func _on_rotation_changed(idx: int, value: float) -> void:
 
 
 func _on_confirmed() -> void:
-	handle_overlay_buttons("confirm") # hide overlay
+	hide_overlay()
 	start_level()
 
 
@@ -98,6 +103,12 @@ func handle_overlay_buttons(overlay_name: String):
 			string_to_overlay(current_overlay).visible = false
 		overlay.visible = true
 		current_overlay = overlay_name
+
+
+func hide_overlay() -> void:
+	# Since handling the same overlay button hides the overlay, this works
+	if current_overlay:
+		handle_overlay_buttons(current_overlay)
 
 
 func refresh_hp_label() -> void:
