@@ -7,6 +7,7 @@ onready var hud = $HUD
 onready var space_station = $SpaceStation
 onready var meteor_platform_table = $MeteorPlatformTable
 onready var config_overlay = $Overlays/ConfigOverlay
+onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
 onready var confirm_overlay = $Overlays/ConfirmOverlay
 
@@ -15,6 +16,7 @@ func _ready():
 	refresh_hp_label()
 	space_station.connect("hp_change", self, "_on_space_station_hp_change")
 	hud.connect("collidix_button_pressed", self, "_on_collidix_button_pressed")
+	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
 	# warning-ignore:unused_variable
@@ -45,6 +47,10 @@ func _on_space_station_hp_change(_hp: int) -> void:
 
 func _on_config_button_pressed() -> void:
 	config_overlay.visible = !config_overlay.visible
+
+
+func _on_forecast_button_pressed() -> void:
+	forecast_overlay.visible = !forecast_overlay.visible
 
 
 func _on_collidix_button_pressed() -> void:
