@@ -3,6 +3,7 @@ extends Node2D
 var Meteor = load("res://scenes/Meteor.tscn")
 var Helpers = load("res://scripts/helpers.gd")
 var is_table_active = false
+var current_overlay = null
 onready var hud = $HUD
 onready var space_station = $SpaceStation
 onready var meteor_platform_table = $MeteorPlatformTable
@@ -46,19 +47,19 @@ func _on_space_station_hp_change(_hp: int) -> void:
 
 
 func _on_config_button_pressed() -> void:
-	config_overlay.visible = !config_overlay.visible
+	handle_overlay_buttons("config")
 
 
 func _on_forecast_button_pressed() -> void:
-	forecast_overlay.visible = !forecast_overlay.visible
+	handle_overlay_buttons("forecast")
 
 
 func _on_collidix_button_pressed() -> void:
-	collidix_overlay.visible = !collidix_overlay.visible
+	handle_overlay_buttons("collidix")
 
 
 func _on_confirm_button_pressed() -> void:
-	confirm_overlay.visible = !confirm_overlay.visible
+	handle_overlay_buttons("confirm")
 
 
 func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
@@ -68,6 +69,30 @@ func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
 	m.global_position = CoordUtil.canon_to_px_coord(pos)
 	add_child(m)
 	return m
+
+
+func string_to_overlay(name: String):
+	match name:
+		"collidix": return collidix_overlay
+		"forecast": return forecast_overlay
+		"config": return config_overlay
+		"confirm": return confirm_overlay
+		_: push_error('Invalid overlay name %s!' % name)
+
+
+func handle_overlay_buttons(overlay_name: String):
+	var overlay = string_to_overlay(overlay_name)
+
+	# If the same overlay button is clicked again, assume that the overlay
+	# should be hidden
+	if current_overlay == overlay_name:
+		overlay.visible = false
+		current_overlay = null
+	else:
+		if current_overlay != null:
+			string_to_overlay(current_overlay).visible = false
+		overlay.visible = true
+		current_overlay = overlay_name
 
 
 func refresh_hp_label() -> void:
