@@ -6,18 +6,22 @@ var is_table_active = false
 onready var hud = $HUD
 onready var space_station = $SpaceStation
 onready var meteor_platform_table = $MeteorPlatformTable
+onready var collidix_overlay = $Overlays/CollidixOverlay
 
 
 func _ready():
 	refresh_hp_label()
 	space_station.connect("hp_change", self, "_on_space_station_hp_change")
+	hud.connect("collidix_button_pressed", self, "_on_collidix_button_pressed")
 	# warning-ignore:unused_variable
 	var meteors = [
 		add_meteor(Vector2(0, 40), 50),
 		add_meteor(Vector2(0, 60), 50)
 	]
 
-	print(gen_meteor_platform_table_data(meteors, [$RotatingPlatform]))
+	collidix_overlay.set_table_data(
+		gen_meteor_platform_table_data(meteors, [$RotatingPlatform])
+	)
 
 
 func _process(_delta) -> void:
@@ -33,6 +37,10 @@ func _on_meteor_collision():
 
 func _on_space_station_hp_change(_hp: int) -> void:
 	refresh_hp_label()
+
+
+func _on_collidix_button_pressed() -> void:
+	collidix_overlay.visible = !collidix_overlay.visible
 
 
 func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
