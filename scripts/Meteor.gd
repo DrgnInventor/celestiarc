@@ -6,6 +6,9 @@ export var velocity = 100
 
 
 func _physics_process(delta):
+	if not Globals.level_running:
+		return
+
 	var collision = move_and_collide(
 		CoordUtil.canon_to_px_coord(Vector2(velocity, 0)).x
 		* direction_vector * delta

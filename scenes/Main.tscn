@@ -21,7 +21,6 @@ position = Vector2( 1021.85, 296.665 )
 position = Vector2( 689.191, 264.475 )
 radius = 20
 rotational_velocity = 6.28
-rotational_offset = 0.0
 
 [node name="Overlays" type="CanvasLayer" parent="."]
 

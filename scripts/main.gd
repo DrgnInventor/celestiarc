@@ -6,6 +6,7 @@ var is_table_active = false
 var current_overlay = null
 onready var hud = $HUD
 onready var space_station = $SpaceStation
+onready var platform_0 = $RotatingPlatform
 onready var config_overlay = $Overlays/ConfigOverlay
 onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
@@ -19,6 +20,8 @@ func _ready():
 	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
+	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
+	confirm_overlay.connect("confirmed", self, "_on_confirmed")
 	# warning-ignore:unused_variable
 	var meteors = [
 		add_meteor(Vector2(0, 40), 50),
@@ -28,6 +31,11 @@ func _ready():
 	collidix_overlay.set_table_data(
 		gen_meteor_platform_table_data(meteors, [$RotatingPlatform])
 	)
+
+
+func _process(_delta: float):
+	if Input.is_action_just_pressed("ui_cancel"):
+		hide_overlay()
 
 
 func _on_meteor_collision():
@@ -52,6 +60,16 @@ func _on_collidix_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	handle_overlay_buttons("confirm")
+
+
+func _on_rotation_changed(idx: int, value: float) -> void:
+	if idx == 0:
+		platform_0.rotational_offset = value
+
+
+func _on_confirmed() -> void:
+	hide_overlay()
+	start_level()
 
 
 func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
@@ -87,6 +105,12 @@ func handle_overlay_buttons(overlay_name: String):
 		current_overlay = overlay_name
 
 
+func hide_overlay() -> void:
+	# Since handling the same overlay button hides the overlay, this works
+	if current_overlay:
+		handle_overlay_buttons(current_overlay)
+
+
 func refresh_hp_label() -> void:
 	hud.set_hp_label(space_station.current_hp)
 
@@ -118,3 +142,7 @@ func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:
 			res.append([title, val_1, val_2])
 
 	return res
+
+
+func start_level() -> void:
+	Globals.level_running = true
