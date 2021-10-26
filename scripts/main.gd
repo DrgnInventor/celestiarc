@@ -6,6 +6,7 @@ var is_table_active = false
 onready var hud = $HUD
 onready var space_station = $SpaceStation
 onready var meteor_platform_table = $MeteorPlatformTable
+onready var config_overlay = $Overlays/ConfigOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
 
 
@@ -13,6 +14,7 @@ func _ready():
 	refresh_hp_label()
 	space_station.connect("hp_change", self, "_on_space_station_hp_change")
 	hud.connect("collidix_button_pressed", self, "_on_collidix_button_pressed")
+	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	# warning-ignore:unused_variable
 	var meteors = [
 		add_meteor(Vector2(0, 40), 50),
@@ -37,6 +39,10 @@ func _on_meteor_collision():
 
 func _on_space_station_hp_change(_hp: int) -> void:
 	refresh_hp_label()
+
+
+func _on_config_button_pressed() -> void:
+	config_overlay.visible = !config_overlay.visible
 
 
 func _on_collidix_button_pressed() -> void:
