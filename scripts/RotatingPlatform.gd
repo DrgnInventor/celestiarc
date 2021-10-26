@@ -19,6 +19,8 @@ func _ready():
 
 func _physics_process(delta):
 	if not Engine.editor_hint:
+		if not Globals.level_running:
+			return
 		# Minus because trigonometry
 		rotation -= rotational_velocity * delta
 

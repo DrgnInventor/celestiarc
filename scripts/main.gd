@@ -19,6 +19,7 @@ func _ready():
 	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
+	confirm_overlay.connect("confirmed", self, "_on_confirmed")
 	# warning-ignore:unused_variable
 	var meteors = [
 		add_meteor(Vector2(0, 40), 50),
@@ -52,6 +53,11 @@ func _on_collidix_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	handle_overlay_buttons("confirm")
+
+
+func _on_confirmed() -> void:
+	handle_overlay_buttons("confirm") # hide overlay
+	start_level()
 
 
 func add_meteor(pos: Vector2, v: int) -> KinematicBody2D:
@@ -118,3 +124,7 @@ func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:
 			res.append([title, val_1, val_2])
 
 	return res
+
+
+func start_level() -> void:
+	Globals.level_running = true
