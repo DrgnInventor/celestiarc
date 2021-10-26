@@ -63,4 +63,5 @@ func set_rotational_velocity(value):
 
 func set_rotational_offset(value):
 	rotational_offset = value
+	rotation = -rotational_offset
 	tool_refresh()

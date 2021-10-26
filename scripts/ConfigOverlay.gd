@@ -1,5 +1,6 @@
 extends Control
 
+signal rotation_changed(idx, value)
 onready var base = $Panel/VBoxContainer/Content/GridContainer
 onready var line_edits = [
 	base.get_node("LineEdit"),
@@ -28,3 +29,4 @@ func handle_row(idx: int) -> void:
 	# Float is reconverted to string because invalid string converts to 0.0 and
 	# it is good UX to reflect what value is actually applied
 	line_edits[idx].text = str(rotations[idx])
+	emit_signal("rotation_changed", idx, rotations[idx])

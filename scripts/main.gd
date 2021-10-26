@@ -6,6 +6,7 @@ var is_table_active = false
 var current_overlay = null
 onready var hud = $HUD
 onready var space_station = $SpaceStation
+onready var platform_0 = $RotatingPlatform
 onready var config_overlay = $Overlays/ConfigOverlay
 onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
@@ -19,6 +20,7 @@ func _ready():
 	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
+	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
 	confirm_overlay.connect("confirmed", self, "_on_confirmed")
 	# warning-ignore:unused_variable
 	var meteors = [
@@ -53,6 +55,11 @@ func _on_collidix_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	handle_overlay_buttons("confirm")
+
+
+func _on_rotation_changed(idx: int, value: float) -> void:
+	if idx == 0:
+		platform_0.rotational_offset = value
 
 
 func _on_confirmed() -> void:
