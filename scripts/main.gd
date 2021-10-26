@@ -6,7 +6,6 @@ var is_table_active = false
 var current_overlay = null
 onready var hud = $HUD
 onready var space_station = $SpaceStation
-onready var meteor_platform_table = $MeteorPlatformTable
 onready var config_overlay = $Overlays/ConfigOverlay
 onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
@@ -29,13 +28,6 @@ func _ready():
 	collidix_overlay.set_table_data(
 		gen_meteor_platform_table_data(meteors, [$RotatingPlatform])
 	)
-
-
-func _process(_delta) -> void:
-	if Input.is_action_just_pressed("ui_up"):
-		show_table()
-	if Input.is_action_just_pressed("ui_down"):
-		hide_table()
 
 
 func _on_meteor_collision():
@@ -97,20 +89,6 @@ func handle_overlay_buttons(overlay_name: String):
 
 func refresh_hp_label() -> void:
 	hud.set_hp_label(space_station.current_hp)
-
-
-func show_table() -> void:
-	if is_table_active:
-		return
-	meteor_platform_table.rect_position.y -= meteor_platform_table.rect_size.y
-	is_table_active = true
-
-
-func hide_table():
-	if not is_table_active:
-		return
-	meteor_platform_table.rect_position.y += meteor_platform_table.rect_size.y
-	is_table_active = false
 
 
 func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:

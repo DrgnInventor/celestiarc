@@ -1,7 +1,7 @@
-extends PanelContainer
+extends Control
 
 const default_font = preload("res://resources/DefaultLabelFont.tres")
-onready var wrapper = $MarginContainer/Wrapper
+onready var wrapper = $Wrapper
 
 
 func _ready():
