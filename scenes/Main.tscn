@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/SpaceStation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/main.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/CollidixOverlay.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/ConfigOverlay.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ConfirmOverlay.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -34,4 +35,7 @@ margin_bottom = 683.314
 visible = false
 
 [node name="CollidixOverlay" parent="Overlays" instance=ExtResource( 6 )]
+visible = false
+
+[node name="ConfirmOverlay" parent="Overlays" instance=ExtResource( 8 )]
 visible = false
