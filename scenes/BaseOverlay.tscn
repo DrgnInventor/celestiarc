@@ -42,7 +42,7 @@ __meta__ = {
 
 [node name="TitleBar" type="MarginContainer" parent="Panel/VBoxContainer"]
 margin_right = 768.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -54,37 +54,21 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 758.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="Panel/VBoxContainer/TitleBar/HBoxContainer"]
-margin_top = 1.0
 margin_right = 65.0
-margin_bottom = 39.0
+margin_bottom = 38.0
 custom_fonts/font = SubResource( 2 )
 text = "Title"
 
-[node name="Empty" type="MarginContainer" parent="Panel/VBoxContainer/TitleBar/HBoxContainer"]
-margin_left = 69.0
-margin_right = 704.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/TitleBar/HBoxContainer"]
-margin_left = 708.0
-margin_right = 748.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-size_flags_vertical = 0
-text = "X"
-
 [node name="Content" type="MarginContainer" parent="Panel/VBoxContainer"]
-margin_top = 54.0
+margin_top = 52.0
 margin_right = 768.0
-margin_bottom = 54.0
+margin_bottom = 52.0
 custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 __meta__ = {
