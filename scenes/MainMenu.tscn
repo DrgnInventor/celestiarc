@@ -1,14 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://resources/DefaultLabelFont.tres" type="DynamicFont" id=2]
-
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://assets/fonts/transpass/Transpass-Bold.ttf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 64
-font_data = SubResource( 1 )
+[ext_resource path="res://assets/logo.png" type="Texture" id=3]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -30,32 +24,46 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -141.0
-margin_top = -61.5
-margin_right = 141.0
-margin_bottom = 73.5
+margin_left = -125.0
+margin_top = -123.0
+margin_right = 125.0
+margin_bottom = 123.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
-margin_right = 282.0
-margin_bottom = 75.0
-custom_fonts/font = SubResource( 2 )
-text = "celestiarc"
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 161.0
+size_flags_horizontal = 12
+size_flags_vertical = 12
+texture = ExtResource( 3 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space" type="MarginContainer" parent="Panel/VBoxContainer"]
+margin_top = 166.0
+margin_right = 250.0
+margin_bottom = 176.0
+custom_constants/margin_top = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayButton" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 80.0
-margin_right = 282.0
-margin_bottom = 105.0
+margin_top = 181.0
+margin_right = 250.0
+margin_bottom = 206.0
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
 [node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
-margin_top = 110.0
-margin_right = 282.0
-margin_bottom = 135.0
+margin_top = 211.0
+margin_right = 250.0
+margin_bottom = 236.0
 custom_fonts/font = ExtResource( 2 )
 text = "Exit"
 __meta__ = {
