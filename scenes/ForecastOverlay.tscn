@@ -37,7 +37,7 @@ margin_left = 2.0
 margin_top = 35.0
 margin_right = 596.0
 margin_bottom = 192.0
-columns = 2
+columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }

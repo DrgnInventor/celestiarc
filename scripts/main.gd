@@ -149,21 +149,19 @@ func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:
 
 func forecast_mformater(data: Array):
 	var mTable = []
-	var mFormat = "Position: %s; velocity: %s"
 	for meteor in data:
 		var v = meteor.velocity
 		var pos = CoordUtil.px_to_canon_coord(meteor.global_position)
-		mTable.append(mFormat % [pos, v])
+		mTable.append([pos, v])
 	return mTable
 
 
 func forecast_pformater(data: Array):
 	var pTable = []
-	var pFormat = "Origin Position: %s; radius: %s"
 	for platform in data:
 		var pos = CoordUtil.px_to_canon_coord(platform.global_position)
 		var radius = platform.radius
-		pTable.append(pFormat % [pos, radius])
+		pTable.append([pos, radius])
 	return pTable
 
 
