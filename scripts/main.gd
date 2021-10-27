@@ -12,7 +12,6 @@ onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
 onready var confirm_overlay = $Overlays/ConfirmOverlay
 
-
 func _ready():
 	refresh_hp_label()
 	space_station.connect("hp_change", self, "_on_space_station_hp_change")
@@ -25,13 +24,17 @@ func _ready():
 	# warning-ignore:unused_variable
 	var meteors = [
 		add_meteor(Vector2(0, 40), 50),
-		add_meteor(Vector2(0, 60), 50)
+		add_meteor(Vector2(0, 80), 50)
 	]
-
+	
+	
 	collidix_overlay.set_table_data(
 		gen_meteor_platform_table_data(meteors, [$RotatingPlatform])
 	)
-
+	forecast_overlay.set_table_data(
+		forecast_mformater(meteors),
+		forecast_pformater([$RotatingPlatform])
+	)
 
 func _process(_delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -142,6 +145,26 @@ func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:
 			res.append([title, val_1, val_2])
 
 	return res
+
+
+func forecast_mformater(data: Array):
+	var mTable = []
+	var mFormat = "Position: %s; velocity: %s"
+	for meteor in data:
+		var v = meteor.velocity
+		var pos = CoordUtil.px_to_canon_coord(meteor.global_position)
+		mTable.append(mFormat % [pos, v])
+	return mTable
+
+
+func forecast_pformater(data: Array):
+	var pTable = []
+	var pFormat = "Origin Position: %s; radius: %s"
+	for platform in data:
+		var pos = CoordUtil.px_to_canon_coord(platform.global_position)
+		var radius = platform.radius
+		pTable.append(pFormat % [pos, radius])
+	return pTable
 
 
 func start_level() -> void:

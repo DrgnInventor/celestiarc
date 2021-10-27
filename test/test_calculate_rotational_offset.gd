@@ -44,11 +44,11 @@ func test_3() -> void:
 func test_4() -> void:
 	"""Check scenario when meteor is below origin and can collide."""
 	assert_eq(
-	    len(Helpers.calculate_rotational_offset(
+		len(Helpers.calculate_rotational_offset(
 		Vector2(2.020, 68.102),
 		Vector2(123.200, 83.001),
 		20.0,
 		4.321,
 		34.921
 		)),
-	    2)
+		2)
