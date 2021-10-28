@@ -27,9 +27,11 @@ static func calculate_rotational_offset(
 		- (rotational_velocity / velocity) * (o.x - m.x - root_res)
 
 	if abs(m.y - o.y) == 1:
-		return [val1]
+		return [stepify(val1, Globals.number_rounder)]
 	else:
-		return [val1, val2]
+		return [stepify(val1, Globals.number_rounder), 
+		stepify(val2, Globals.number_rounder)
+		]
 
 
 static func simple_calculate_rotational_offset(
