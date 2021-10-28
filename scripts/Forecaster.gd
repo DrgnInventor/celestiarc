@@ -1,7 +1,7 @@
 extends Control
 
-onready var forecast = $Forecast
-
+onready var mforecast = $MForecast
+onready var pforecast = $PForecast
 
 func forecast_mformater(data: Array):
 	var mTable = []
@@ -32,18 +32,11 @@ func refresh_data(mData: Array, pData: Array) -> void:
 	var p = forecast_pformater(pData)
 	
 	"""data: N sized array with arrays of 3 strings as children."""
-	for child in forecast.get_children():
-		child.queue_free()
-
-	if m.size() >= p.size():
-		for i in range(m.size()):
-			if i <= p.size()-1:
-				Helpers.create_row(forecast, m[i], "", p[i])
-			else:
-				Helpers.create_row(forecast, m[i], "", "")
-	else:
-		for i in range(p.size()):
-			if i <= m.size()-1:
-				Helpers.create_row(forecast, m[i], "", p[i])
-			else:
-				Helpers.create_row(forecast, "", "", p[i])
+	Helpers.kill_children(mforecast)
+	Helpers.kill_children(pforecast)
+	
+	for obj in m:
+		Helpers.create_child(mforecast, obj)
+	for obj in p:
+		Helpers.create_child(pforecast, obj)
+	

@@ -31,13 +31,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Forecast" type="GridContainer" parent="Panel/VBoxContainer/Content/Forecaster" index="0"]
-anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 35.0
-margin_right = 596.0
-margin_bottom = 192.0
-columns = 3
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Content/Forecaster" index="0"]
+margin_left = 5.0
+margin_top = 30.0
+margin_right = 731.0
+margin_bottom = 232.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MForecast" type="GridContainer" parent="Panel/VBoxContainer/Content/Forecaster/HBoxContainer" index="0"]
+margin_bottom = 202.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PForecast" type="GridContainer" parent="Panel/VBoxContainer/Content/Forecaster/HBoxContainer" index="1"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 202.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
