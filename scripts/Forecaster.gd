@@ -1,7 +1,7 @@
 extends Control
 
-onready var mforecast = $MForecast
-onready var pforecast = $PForecast
+onready var mforecast = $HBoxContainer/MForecast
+onready var pforecast = $HBoxContainer/PForecast
 
 func forecast_mformater(data: Array):
 	var mTable = []
@@ -35,8 +35,11 @@ func refresh_data(mData: Array, pData: Array) -> void:
 	Helpers.kill_children(mforecast)
 	Helpers.kill_children(pforecast)
 	
+	Helpers.create_row(mforecast, ["Meteors: "])
+	Helpers.create_row(pforecast, ["Platforms: "])
+	
 	for obj in m:
-		Helpers.create_child(mforecast, obj)
+		Helpers.create_row(mforecast, [obj])
 	for obj in p:
-		Helpers.create_child(pforecast, obj)
+		Helpers.create_row(pforecast, [obj])
 	

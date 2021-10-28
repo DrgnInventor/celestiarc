@@ -58,16 +58,11 @@ static func _create_label(text: String) -> Label:
 	return label
 
 
-static func create_row(wrapper: Node, a: String, b: String, c: String) -> void:
-	wrapper.add_child(_create_label(a))
-	wrapper.add_child(_create_label(b))
-	wrapper.add_child(_create_label(c))
+static func create_row(wrapper: Node, data: Array) -> void:
+	for child in data: 
+		wrapper.add_child(_create_label(child))
 	
 
-static func create_child(container: Node, a: String):
-	container.add_child(_create_label(a))
-
-	
 static func kill_children(container: Node):
 		for child in container.get_children():
 			child.queue_free()

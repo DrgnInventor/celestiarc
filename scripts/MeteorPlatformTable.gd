@@ -14,10 +14,9 @@ func _ready():
 
 func refresh_data(data: Array) -> void:
 	"""data: N sized array with arrays of 3 strings as children."""
-	for child in wrapper.get_children():
-		child.queue_free()
+	Helpers.kill_children(wrapper)
 
-	Helpers.create_row(wrapper, "", "Angle 1", "Angle 2")
+	Helpers.create_row(wrapper,["", "Angle 1", "Angle 2"])
 	for d in data:
-		Helpers.create_row(wrapper, d[0], d[1], d[2])
+		Helpers.create_row(wrapper, [d[0], d[1], d[2]])
 		print(d[0], d[1], d[2])
