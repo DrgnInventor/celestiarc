@@ -1,5 +1,5 @@
 class_name Helpers
-
+const default_font = preload("res://resources/DefaultLabelFont.tres")
 
 static func calculate_rotational_offset(
 	meteor_position: Vector2,
@@ -47,3 +47,15 @@ static func simple_calculate_rotational_offset(
 		platform.rotational_velocity,
 		meteor.velocity
 	)
+
+
+static func _create_label(text: String) -> Label:
+	var label = Label.new()
+	label.set("custom_fonts/font", default_font)
+	label.text = text
+	return label
+
+static func create_row(wrapper: Node, a: String, b: String, c: String) -> void:
+	wrapper.add_child(_create_label(a))
+	wrapper.add_child(_create_label(b))
+	wrapper.add_child(_create_label(c))

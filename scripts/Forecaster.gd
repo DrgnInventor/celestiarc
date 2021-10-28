@@ -1,6 +1,5 @@
 extends Control
 
-const default_font = preload("res://resources/DefaultLabelFont.tres")
 onready var forecast = $Forecast
 
 
@@ -24,19 +23,6 @@ func forecast_pformater(data: Array):
 		var radius = platform.radius
 		pTable.append(format % [pos, radius])
 	return pTable
-	
-
-func _create_label(text: String) -> Label:
-	var label = Label.new()
-	label.set("custom_fonts/font", default_font)
-	label.text = text
-	return label
-
-
-func create_row(a: String, b: String, c: String) -> void:
-	forecast.add_child(_create_label(a))
-	forecast.add_child(_create_label(b))
-	forecast.add_child(_create_label(c))
 
 
 func refresh_data(mData: Array, pData: Array) -> void:
@@ -50,12 +36,12 @@ func refresh_data(mData: Array, pData: Array) -> void:
 	if m.size() >= p.size():
 		for i in range(m.size()):
 			if i <= p.size()-1:
-				create_row(m[i], "", p[i])
+				Helpers.create_row(forecast, m[i], "", p[i])
 			else:
-				create_row(m[i], "", "")
+				Helpers.create_row(forecast, m[i], "", "")
 	else:
 		for i in range(p.size()):
 			if i <= m.size()-1:
-				create_row(m[i], "", p[i])
+				Helpers.create_row(forecast, m[i], "", p[i])
 			else:
-				create_row("", "", p[i])
+				Helpers.create_row(forecast, "", "", p[i])
