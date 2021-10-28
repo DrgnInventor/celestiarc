@@ -26,34 +26,24 @@ func forecast_pformater(data: Array):
 		pTable.append(format % [pos, radius])
 	return pTable
 
-func checkCase(m: Array, p: Array, i: int):
-	var mlen = m.size() -1
-	var plen = p.size() -1
-	if i <= mlen and i <= plen:
-		return 0
-	elif i > plen and i < mlen:
-		return 1
-	elif i > mlen and i < plen:
-		return 2
-	else:
-		return 3
-
 
 func refresh_data(mData: Array, pData: Array) -> void:
 	var m = forecast_mformater(mData)
 	var p = forecast_pformater(pData)
-	var i = 0
+	
 	"""data: N sized array with arrays of 3 strings as children."""
 	for child in forecast.get_children():
 		child.queue_free()
-	while true:
-		match checkCase(m, p, i):
-			0:
+
+	if m.size() >= p.size():
+		for i in range(m.size()):
+			if i <= p.size()-1:
 				Helpers.create_row(forecast, m[i], "", p[i])
-			1:
+			else:
 				Helpers.create_row(forecast, m[i], "", "")
-			2:	
+	else:
+		for i in range(p.size()):
+			if i <= m.size()-1:
+				Helpers.create_row(forecast, m[i], "", p[i])
+			else:
 				Helpers.create_row(forecast, "", "", p[i])
-			3:
-				break
-		i += 1
