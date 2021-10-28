@@ -4,6 +4,28 @@ const default_font = preload("res://resources/DefaultLabelFont.tres")
 onready var forecast = $Forecast
 
 
+func forecast_mformater(data: Array):
+	var mTable = []
+	var format = "Position: %s; Velocity: %s"
+	for meteor in data:
+		var v = meteor.velocity
+		var pos = CoordUtil.px_to_canon_coord(meteor.global_position)
+		mTable.append(format % [pos, v])
+	return mTable
+
+
+func forecast_pformater(data: Array):
+	var pTable = []
+	var format = "Original Position: %s; Radius: %s"
+	for platform in data:
+		var pos = CoordUtil.px_to_canon_coord(platform.global_position)
+		pos.y = stepify(pos.y, 1)
+		pos.x = stepify(pos.x, 1)
+		var radius = platform.radius
+		pTable.append(format % [pos, radius])
+	return pTable
+	
+
 func _create_label(text: String) -> Label:
 	var label = Label.new()
 	label.set("custom_fonts/font", default_font)
@@ -16,40 +38,24 @@ func create_row(a: String, b: String, c: String) -> void:
 	forecast.add_child(_create_label(b))
 	forecast.add_child(_create_label(c))
 
-		
-func generate_forecast_entry(a: Array, i, case: int):
-	var format
-	match case:
-		0:
-			format = "Position: %s; Velocity: %s"
-		1:
-			format = "Original Position: %s; Radius: %s"
+
+func refresh_data(mData: Array, pData: Array) -> void:
+	var m = forecast_mformater(mData)
+	var p = forecast_pformater(pData)
 	
-	if i <= a.size() - 1:
-		return format % [a[i][0], a[i][1]]
-	else:
-		return ""
-
-
-func refresh_data(m: Array, p: Array) -> void:
 	"""data: N sized array with arrays of 3 strings as children."""
 	for child in forecast.get_children():
 		child.queue_free()
-	var i = 0
-	create_row("Meteors","" ,"Platforms")	
-	while true:
-		create_row(generate_forecast_entry(m, i, 0), "", generate_forecast_entry(p, i, 1))
-		i += 1
-		if generate_forecast_entry(m, i, 0) == generate_forecast_entry(p, i, 1):
-			break
-	
-	#while true:
-	#	if i+1 <= p.size() and i+1 <= m.size():
-	#		create_row(m[i], p[i])
-	#	elif i+1 > p.size() and i+1 <= m.size():
-	#		create_row(m[i], "")
-	#	elif i+1 <= p.size() and i+1 > m.size():
-	#		create_row("", p[i])
-	#	else:
-	#		break
-	#	i += 1
+
+	if m.size() >= p.size():
+		for i in range(m.size()):
+			if i <= p.size()-1:
+				create_row(m[i], "", p[i])
+			else:
+				create_row(m[i], "", "")
+	else:
+		for i in range(p.size()):
+			if i <= m.size()-1:
+				create_row(m[i], "", p[i])
+			else:
+				create_row("", "", p[i])
