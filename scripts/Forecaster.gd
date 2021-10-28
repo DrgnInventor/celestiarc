@@ -4,15 +4,15 @@ onready var m_forecast = $HBoxContainer/MForecast
 onready var p_forecast = $HBoxContainer/PForecast
 
 func forecast_mformater(data: Array):
-	var m_Table = []
+	var m_table = []
 	var format = "Position: %s; Velocity: %s"
 	for meteor in data:
 		var v = stepify(meteor.velocity, Globals.number_rounder)
 		var pos = CoordUtil.px_to_canon_coord(meteor.global_position)
 		pos.y = stepify(pos.y, Globals.number_rounder)
 		pos.x = stepify(pos.x, Globals.number_rounder)
-		m_Table.append(format % [pos, v])
-	return m_Table
+		m_table.append(format % [pos, v])
+	return m_table
 
 
 func forecast_pformater(data: Array):
@@ -20,16 +20,16 @@ func forecast_pformater(data: Array):
 	var format = "Original Position: %s; Radius: %s"
 	for platform in data:
 		var pos = CoordUtil.px_to_canon_coord(platform.global_position)
-		pos.y = stepify(pos.y, Globals.number_rounder)
-		pos.x = stepify(pos.x, Globals.number_rounder)
+		pos.y = stepify(pos.y, float(Globals.number_rounder))
+		pos.x = stepify(pos.x, float(Globals.number_rounder))
 		var radius = platform.radius
 		p_table.append(format % [pos, radius])
 	return p_table
 
 
-func refresh_data(mData: Array, pData: Array) -> void:
-	var m = forecast_mformater(mData)
-	var p = forecast_pformater(pData)
+func refresh_data(m_data: Array, p_data: Array) -> void:
+	var m = forecast_mformater(m_data)
+	var p = forecast_pformater(p_data)
 	
 	"""data: N sized array with arrays of 3 strings as children."""
 	Helpers.kill_children(m_forecast)
