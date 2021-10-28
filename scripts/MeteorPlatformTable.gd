@@ -20,3 +20,4 @@ func refresh_data(data: Array) -> void:
 	Helpers.create_row(wrapper, "", "Angle 1", "Angle 2")
 	for d in data:
 		Helpers.create_row(wrapper, d[0], d[1], d[2])
+		print(d[0], d[1], d[2])
