@@ -60,7 +60,10 @@ static func _create_label(text: String) -> Label:
 
 static func create_row(wrapper: Node, data: Array) -> void:
 	for child in data: 
-		wrapper.add_child(_create_label(child))
+		if typeof(child) == TYPE_STRING:
+			wrapper.add_child(_create_label(child))
+		else: 
+			push_warning("create_row argument is not a String, but is: " + str(typeof(child)))
 	
 
 static func kill_children(container: Node):
