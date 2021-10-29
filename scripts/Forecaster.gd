@@ -3,6 +3,7 @@ extends Control
 onready var m_forecast = $HBoxContainer/MForecast
 onready var p_forecast = $HBoxContainer/PForecast
 
+
 func forecast_mformater(data: Array):
 	var m_table = []
 	var format = "Position: %s; Velocity: %s"

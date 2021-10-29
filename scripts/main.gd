@@ -143,7 +143,7 @@ func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:
 			res.append([title, val_1, val_2])
 
 	return res
-	
+
 
 func start_level() -> void:
 	Globals.level_running = true
