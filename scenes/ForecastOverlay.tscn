@@ -40,16 +40,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MForecast" type="GridContainer" parent="Panel/VBoxContainer/Content/Forecaster/HBoxContainer" index="0"]
+[node name="MForecast" type="VBoxContainer" parent="Panel/VBoxContainer/Content/Forecaster/HBoxContainer" index="0"]
 margin_bottom = 202.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PForecast" type="GridContainer" parent="Panel/VBoxContainer/Content/Forecaster/HBoxContainer" index="1"]
+[node name="PForecast" type="VBoxContainer" parent="Panel/VBoxContainer/Content/Forecaster/HBoxContainer" index="1"]
 margin_left = 4.0
 margin_right = 4.0
 margin_bottom = 202.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
