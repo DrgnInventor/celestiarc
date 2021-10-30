@@ -1,28 +1,53 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/BaseOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/DefaultLabelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scripts/ForecastOverlay.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Forecaster.gd" type="Script" id=4]
 
 [node name="ForecastOverlay" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 
 [node name="Title" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="0"]
 margin_right = 127.0
 text = "Forecast"
 
-[node name="Empty" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="1"]
-margin_left = 131.0
-
 [node name="Content" parent="Panel/VBoxContainer" index="1"]
-margin_bottom = 117.0
+margin_bottom = 71.0
 
-[node name="Nothing" parent="Panel/VBoxContainer/Content" index="0"]
-margin_bottom = 63.0
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer/Content" index="1"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Content" index="0"]
 margin_left = 20.0
 margin_right = 748.0
-margin_bottom = 63.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 2 )
-text = "These are the upcoming meteors:
-- Data A
-- Data B"
+text = "Incoming information:"
+
+[node name="Forecaster" type="Control" parent="Panel/VBoxContainer/Content" index="1"]
+margin_left = 20.0
+margin_right = 748.0
+margin_bottom = 19.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Content/Forecaster" index="0"]
+margin_left = 5.0
+margin_top = 30.0
+margin_right = 731.0
+margin_bottom = 232.0
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MForecast" type="VBoxContainer" parent="Panel/VBoxContainer/Content/Forecaster/VBoxContainer" index="0"]
+margin_right = 726.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PForecast" type="VBoxContainer" parent="Panel/VBoxContainer/Content/Forecaster/VBoxContainer" index="1"]
+margin_top = 15.0
+margin_right = 726.0
+margin_bottom = 15.0
