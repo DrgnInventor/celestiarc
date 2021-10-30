@@ -1,6 +1,7 @@
 extends Control
 
-const main_scene_location = "res://scenes/Main.tscn"
+signal play
+signal exit
 onready var play_button = $Panel/VBoxContainer/PlayButton
 onready var exit_button = $Panel/VBoxContainer/ExitButton
 
@@ -11,9 +12,8 @@ func _ready():
 
 
 func _on_play_button_pressed():
-	# warning-ignore:return_value_discarded
-	get_tree().change_scene(main_scene_location)
+	emit_signal("play")
 
 
 func _on_exit_button_pressed():
-	get_tree().quit()
+	emit_signal("exit")

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal hit
 const direction_vector = Vector2(1, 0)
-export var velocity = 100
+export var velocity = 100.0000
 
 
 func _physics_process(delta):

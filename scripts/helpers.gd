@@ -1,4 +1,6 @@
 class_name Helpers
+
+const rounded_PI = 3.1416 # PI that is rounded to 0.001
 const default_font = preload("res://resources/DefaultLabelFont.tres")
 
 static func calculate_rotational_offset(
@@ -27,8 +29,8 @@ static func calculate_rotational_offset(
 		- (rotational_velocity / velocity) * (o.x - m.x - root_res)
 
 
-	val1 = f_round(val1)
-	val2 = f_round(val2)
+	val1 = f_round(normalize_angle(val1))
+	val2 = f_round(normalize_angle(val2))
 
 	if abs(m.y - o.y) == 1:
 		return [val1]
@@ -53,6 +55,12 @@ static func simple_calculate_rotational_offset(
 	)
 
 
+static func normalize_angle(angle: float) -> float:
+	"""Convert angle to range of [0; 2PI)."""
+	# To be consistent, PI with 4 digit precision is used
+	return fposmod(angle, rounded_PI * 2)
+
+
 static func _create_label(text: String) -> Label:
 	var label = Label.new()
 	label.set("custom_fonts/font", default_font)
@@ -60,17 +68,63 @@ static func _create_label(text: String) -> Label:
 	return label
 
 
+static func calculate_velocity(
+	meteor_position: Vector2,
+	platform_rotational_origin: Vector2,
+	radius: float,
+	rotational_velocity: float,
+	rotational_offset: float,
+	iteration: int = 0
+) -> float:
+	"""Given parameters, get potential velocity.
+
+	Its purpose is manual level construction and is not well-tested.
+	`iteration` represents the count of full rotation. There are infinite
+	velocities possible."""
+	var m = meteor_position
+	var o = platform_rotational_origin
+	var R = radius
+	rotational_offset = normalize_angle(rotational_offset)
+	var root_expr = sqrt((R - m.y + o.y) * (R + m.y - o.y))
+	## Formula is different when angle is on the left side or right side
+	if (rounded_PI * 0.5 < rotational_offset
+		and rotational_offset < rounded_PI * 1.5):
+		return - (rotational_velocity * (o.x - m.x - root_expr)) \
+			/ (rotational_offset - rounded_PI + asin((m.y - o.y) / radius)
+				- 2 * rounded_PI * iteration)
+	else:
+		return - (rotational_velocity * (o.x - m.x + root_expr)) \
+			/ (rotational_offset - asin((m.y - o.y) / radius)
+				- 2 * rounded_PI * iteration)
+
+
 static func create_row(wrapper: Node, data: Array) -> void:
-	for child in data: 
+	for child in data:
 		if typeof(child) == TYPE_STRING:
 			wrapper.add_child(_create_label(child))
-		else: 
+		else:
 			push_warning("create_row argument is not a String, but is: " + str(typeof(child)))
-	
+
 
 static func kill_children(container: Node):
 		for child in container.get_children():
 			child.queue_free()
+
+
+static func simple_calculate_velocity(
+	meteor: KinematicBody2D,
+	platform: Node2D,
+	iteration: int = 0
+) -> float:
+	"""Convenience method for `calculate_velocity`."""
+	return calculate_velocity(
+		CoordUtil.px_to_canon_coord(meteor.position),
+		CoordUtil.px_to_canon_coord(platform.position),
+		platform.radius,
+		platform.rotational_velocity,
+		platform.rotational_offset,
+		iteration
+	)
 
 
 static func f_round(f: float) -> float:

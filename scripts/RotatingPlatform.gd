@@ -14,7 +14,8 @@ onready var orbit_line = $OrbitLine
 func _ready():
 	collider.position.x = px_radius()
 	if not Engine.editor_hint:
-		orbit_line.visible = false
+		display_orbit(false)
+	refresh_orbit()
 
 
 func _physics_process(delta):
@@ -46,7 +47,8 @@ func refresh_orbit():
 	var point_count = 100
 	var angle_delta = 2 * PI / point_count
 	orbit_line.clear_points()
-	for i in range(point_count):
+	# point_count+1 so that the circle closes
+	for i in range(point_count + 1):
 		orbit_line.add_point(Vector2(px_radius() * cos(i * angle_delta),
 									 px_radius() * sin(i * angle_delta)))
 
@@ -65,3 +67,7 @@ func set_rotational_offset(value):
 	rotational_offset = value
 	rotation = -rotational_offset
 	tool_refresh()
+
+
+func display_orbit(b: bool):
+	orbit_line.visible = b

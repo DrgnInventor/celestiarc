@@ -33,15 +33,14 @@ func refresh_data(m_data: Array, p_data: Array) -> void:
 	"""data: N sized array with arrays of 3 strings as children."""
 	var m = meteor_formatter(m_data)
 	var p = platform_formatter(p_data)
-	
+
 	Helpers.kill_children(m_forecast)
 	Helpers.kill_children(p_forecast)
-	
+
 	Helpers.create_row(m_forecast, ["Meteors: "])
 	Helpers.create_row(p_forecast, ["Platforms: "])
-	
+
 	for obj in m:
 		Helpers.create_row(m_forecast, [obj])
 	for obj in p:
 		Helpers.create_row(p_forecast, [obj])
-	
