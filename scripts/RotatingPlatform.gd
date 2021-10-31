@@ -4,11 +4,17 @@ extends Node2D
 # rotation which goes clockwise unlike in trigonometry where rotation goes
 # counterclowise
 
-export var radius = 100 setget set_radius
-export var rotational_velocity = 1.07 setget set_rotational_velocity
-export var rotational_offset = 0.00 setget set_rotational_offset
+## Exported with Globals.epsilon precision
+export(float, 0, 1000, 0.0001) var radius = 100 setget set_radius
+export(float, 0, 7, 0.0001) var rotational_velocity = 1.07 \
+	setget set_rotational_velocity
+export(float, 0, 7, 0.0001) var rotational_offset = 0.00 \
+	setget set_rotational_offset
+export var canon_coord = Vector2(0.0, 0.0) setget set_canon_coord
 onready var collider = $Collider
 onready var orbit_line = $OrbitLine
+# Variable that is used to listen for position change
+onready var tool_last_global_position = global_position
 
 
 func _ready():
@@ -16,6 +22,12 @@ func _ready():
 	if not Engine.editor_hint:
 		display_orbit(false)
 	refresh_orbit()
+
+
+func _process(_delta: float) -> void:
+	if Engine.editor_hint:
+		if tool_last_global_position != global_position:
+			_on_global_position_changed()
 
 
 func _physics_process(delta):
@@ -37,6 +49,7 @@ func px_radius() -> float:
 
 func tool_refresh():
 	if Engine.editor_hint and is_ready():
+		property_list_changed_notify()
 		collider.position.x = px_radius()
 		# Minus because trigonometry
 		rotation = -rotational_offset
@@ -53,6 +66,12 @@ func refresh_orbit():
 									 px_radius() * sin(i * angle_delta)))
 
 
+func _on_global_position_changed():
+	canon_coord = CoordUtil.px_to_canon_coord(global_position)
+	tool_last_global_position = global_position
+	tool_refresh()
+
+
 func set_radius(value):
 	radius = value
 	tool_refresh()
@@ -66,6 +85,12 @@ func set_rotational_velocity(value):
 func set_rotational_offset(value):
 	rotational_offset = value
 	rotation = -rotational_offset
+	tool_refresh()
+
+
+func set_canon_coord(value: Vector2) -> void:
+	canon_coord = value
+	global_position = CoordUtil.canon_to_px_coord(value)
 	tool_refresh()
 
 

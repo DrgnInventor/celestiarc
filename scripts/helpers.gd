@@ -143,3 +143,7 @@ static func f_round_fmt(f: float) -> String:
 
 static func v2_round_fmt(v2: Vector2) -> String:
 	return "(%s; %s)" % [f_round_fmt(v2.x), f_round_fmt(v2.y)]
+
+
+static func can_switch_to_next_level() -> bool:
+	return Globals.current_level_n < Globals.levels.size()

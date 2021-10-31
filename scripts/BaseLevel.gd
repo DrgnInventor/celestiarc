@@ -6,19 +6,24 @@ var Meteor = load("res://scenes/Meteor.tscn")
 var Helpers = load("res://scripts/helpers.gd")
 var is_table_active = false
 var current_overlay = null
-var alive_meteors: int
-var current_meteors: Array
-var current_platforms: Array
+onready var current_platforms = [
+	$RotatingPlatforms/RotatingPlatform,
+	$RotatingPlatforms/RotatingPlatform2,
+]
+onready var current_meteors = [
+	$Meteors/Meteor,
+	$Meteors/Meteor2,
+	$Meteors/Meteor3,
+]
 onready var hud = $HUD
 onready var space_station = $SpaceStation
-onready var platform_0 = $RotatingPlatform
-onready var platform_1 = $RotatingPlatform2
 onready var config_overlay = $Overlays/ConfigOverlay
 onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
 onready var confirm_overlay = $Overlays/ConfirmOverlay
 onready var win_overlay = $Overlays/WinOverlay
 onready var lose_overlay = $Overlays/LoseOverlay
+onready var alive_meteors = current_meteors.size()
 
 func _ready():
 	refresh_hp_label()
@@ -29,17 +34,9 @@ func _ready():
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
 	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
 	confirm_overlay.connect("confirmed", self, "_on_confirmed")
-	# warning-ignore:unused_variable
-	current_meteors = [
-		add_meteor(Vector2(0, 40), 22.3193),
-		add_meteor(Vector2(0, 50), 40),
-		add_meteor(Vector2(0, 60), 50)
-	]
-	current_platforms = [platform_0, platform_1]
-
-	alive_meteors = current_meteors.size()
 
 	for m in current_meteors:
+		m.connect("hit", self, "_on_meteor_collision")
 		m.connect("tree_exited", self, "_on_meteor_destruction")
 
 	for p in current_platforms:
@@ -91,9 +88,9 @@ func _on_confirm_button_pressed() -> void:
 
 func _on_rotation_changed(idx: int, value: float) -> void:
 	if idx == 0:
-		platform_0.rotational_offset = value
+		current_platforms[0].rotational_offset = value
 	elif idx == 1:
-		platform_1.rotational_offset = value
+		current_platforms[1].rotational_offset = value
 
 
 func _on_confirmed() -> void:
@@ -190,3 +187,4 @@ func lose_handler() -> void:
 
 func win_handler() -> void:
 	handle_overlay("win")
+	Globals.level_running = false
