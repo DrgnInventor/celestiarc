@@ -42,10 +42,8 @@ func _ready():
 	for p in current_platforms:
 		p.display_orbit(true)
 
-	collidix_overlay.set_table_data(
-		gen_meteor_platform_table_data(current_meteors, current_platforms)
-	)
-	forecast_overlay.set_table_data(current_meteors, current_platforms)
+	collidix_overlay.gen_table(current_meteors, current_platforms)
+	forecast_overlay.gen_tables(current_meteors, current_platforms)
 
 func _process(_delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -143,35 +141,6 @@ func hide_overlay() -> void:
 
 func refresh_hp_label() -> void:
 	hud.set_hp_label(space_station.current_hp)
-
-
-func gen_meteor_platform_table_data(meteors: Array, platforms: Array) -> Array:
-	var res = []
-	for p_i in platforms.size():
-		for m_i in meteors.size():
-			var offsets = Helpers.simple_calculate_rotational_offset(
-				meteors[m_i],
-				platforms[p_i]
-			)
-			var val_1 = ""
-			var val_2 = ""
-			match offsets.size():
-				0:
-					val_1 = "-"
-					val_2 = "-"
-				1:
-					val_1 = Helpers.f_round_fmt(offsets[0])
-					val_2 = "-"
-				2:
-					val_1 = Helpers.f_round_fmt(offsets[0])
-					val_2 = Helpers.f_round_fmt(offsets[1])
-				_:
-					push_error("'offsets' is in wrong shape! ")
-
-			var title = "M%s-P%s" % [m_i + 1, p_i + 1]
-			res.append([title, val_1, val_2])
-
-	return res
 
 
 func start_level() -> void:

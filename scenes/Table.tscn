@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/IconifiedText.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Table.gd" type="Script" id=3]
+[ext_resource path="res://assets/boxy-shape.png" type="Texture" id=4]
+[ext_resource path="res://assets/meteors/meteorBrown_med1.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/fonts/transpass/Transpass-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = SubResource( 2 )
+
+[node name="Table" type="VBoxContainer"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 10
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_right = 367.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 1 )
+text = "Table Title"
+
+[node name="TableGrid" type="GridContainer" parent="."]
+margin_top = 39.0
+margin_right = 367.0
+margin_bottom = 180.0
+size_flags_vertical = 3
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 4
+
+[node name="Empty" type="MarginContainer" parent="TableGrid"]
+margin_right = 39.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+
+[node name="Col2" parent="TableGrid" instance=ExtResource( 1 )]
+margin_left = 49.0
+margin_right = 149.0
+text = "Alpha Prop"
+
+[node name="Col3" parent="TableGrid" instance=ExtResource( 1 )]
+margin_left = 159.0
+margin_right = 248.0
+icon = ExtResource( 5 )
+text = "Beta Prop"
+
+[node name="Col4" parent="TableGrid" instance=ExtResource( 1 )]
+margin_left = 258.0
+margin_right = 367.0
+icon = ExtResource( 4 )
+text = "Gamma Prop"
+
+[node name="Row2Title" type="Label" parent="TableGrid"]
+margin_top = 98.0
+margin_right = 39.0
+margin_bottom = 112.0
+text = "ITEM1"
+
+[node name="V1ALPHA" type="Label" parent="TableGrid"]
+margin_left = 49.0
+margin_top = 98.0
+margin_right = 149.0
+margin_bottom = 112.0
+text = "VALUE 1 ALPHA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V1BETA" type="Label" parent="TableGrid"]
+margin_left = 159.0
+margin_top = 98.0
+margin_right = 248.0
+margin_bottom = 112.0
+text = "VALUE 1 BETA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V1GAMMA" type="Label" parent="TableGrid"]
+margin_left = 258.0
+margin_top = 98.0
+margin_right = 367.0
+margin_bottom = 112.0
+text = "VALUE 1 GAMMA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Row3Title" type="Label" parent="TableGrid"]
+margin_top = 122.0
+margin_right = 39.0
+margin_bottom = 136.0
+text = "ITEM2"
+
+[node name="V2ALPHA" type="Label" parent="TableGrid"]
+margin_left = 49.0
+margin_top = 122.0
+margin_right = 149.0
+margin_bottom = 136.0
+text = "VALUE 2 ALPHA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V2BETA" type="Label" parent="TableGrid"]
+margin_left = 159.0
+margin_top = 122.0
+margin_right = 248.0
+margin_bottom = 136.0
+text = "VALUE 2 BETA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V2GAMMA" type="Label" parent="TableGrid"]
+margin_left = 258.0
+margin_top = 122.0
+margin_right = 367.0
+margin_bottom = 136.0
+text = "VALUE 2 GAMMA"
+__meta__ = {
+"_edit_use_anchors_": false
+}
