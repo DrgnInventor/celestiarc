@@ -1,8 +1,36 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/BaseOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Table.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/CollidixOverlay.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+border_width_left = 2
+border_width_top = 15
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=5]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 2 )
+VScrollBar/styles/grabber_highlight = SubResource( 3 )
+VScrollBar/styles/grabber_pressed = SubResource( 4 )
+VScrollBar/styles/scroll = null
+VScrollBar/styles/scroll_focus = null
 
 [node name="CollidixOverlay" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -12,9 +40,98 @@ margin_right = 180.0
 text = "Collidix v0.1"
 
 [node name="Content" parent="Panel/VBoxContainer" index="1"]
-margin_bottom = 237.0
+margin_bottom = 182.0
 
-[node name="CollidixTable" parent="Panel/VBoxContainer/Content" index="0" instance=ExtResource( 2 )]
+[node name="Wrapper" type="VBoxContainer" parent="Panel/VBoxContainer/Content" index="0"]
 margin_left = 20.0
-margin_right = 387.0
-margin_bottom = 185.0
+margin_right = 748.0
+margin_bottom = 130.0
+custom_constants/separation = 10
+
+[node name="Wrapper" type="HBoxContainer" parent="Panel/VBoxContainer/Content/Wrapper" index="0"]
+margin_right = 728.0
+margin_bottom = 100.0
+custom_constants/separation = 30
+
+[node name="CollidixTable" parent="Panel/VBoxContainer/Content/Wrapper/Wrapper" index="0" instance=ExtResource( 2 )]
+visible = false
+margin_right = 367.0
+margin_bottom = 175.0
+grow_horizontal = 0
+
+[node name="ShellBackground" type="Panel" parent="Panel/VBoxContainer/Content/Wrapper/Wrapper" index="1"]
+margin_right = 728.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground" index="0"]
+margin_left = 3.0
+margin_top = 1.0
+margin_right = 43.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "shell"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 18.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground/ScrollContainer" index="0"]
+margin_right = 708.0
+margin_bottom = 473.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "$ echo hello world
+hello world
+$ sudo rm -rf /
+[sudo] password for sst
+deleting ....
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit
+$ exit"
+autowrap = true
+
+[node name="CalculateButton" type="Button" parent="Panel/VBoxContainer/Content/Wrapper" index="1"]
+margin_top = 110.0
+margin_right = 70.0
+margin_bottom = 130.0
+size_flags_horizontal = 0
+text = "Calculate"
