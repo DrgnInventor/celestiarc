@@ -93,6 +93,7 @@ func _on_rotation_changed(idx: int, value: float) -> void:
 
 func _on_confirmed() -> void:
 	hide_overlay()
+	hud.disable_buttons()
 	for p in current_platforms:
 		p.display_orbit(false)
 	start_level()

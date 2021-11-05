@@ -35,5 +35,12 @@ func _on_confirm_button_pressed():
 	emit_signal("confirm_button_pressed")
 
 
+func disable_buttons():
+	collidix_button.disabled = true
+	forecast_button.disabled = true
+	config_button.disabled = true
+	confirm_button.disabled = true
+	
+
 func set_hp_label(hp: int) -> void:
 	hp_label.text = "HP: %03d" % hp
