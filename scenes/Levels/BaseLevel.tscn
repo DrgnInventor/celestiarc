@@ -23,11 +23,9 @@ position = Vector2( 1021.85, 296.665 )
 [node name="RotatingPlatforms" type="Node" parent="."]
 
 [node name="RotatingPlatform" parent="RotatingPlatforms" instance=ExtResource( 3 )]
-position = Vector2( 0, 600 )
 rotational_velocity = 6.28
 
 [node name="RotatingPlatform2" parent="RotatingPlatforms" instance=ExtResource( 3 )]
-position = Vector2( 0, 600 )
 
 [node name="Meteors" type="Node" parent="."]
 
