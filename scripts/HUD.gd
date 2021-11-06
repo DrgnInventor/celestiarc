@@ -32,3 +32,10 @@ func _on_collidix_button_pressed():
 
 func _on_confirm_button_pressed():
 	emit_signal("confirm_button_pressed")
+
+
+func disable_buttons():
+	collidix_button.disabled = true
+	forecast_button.disabled = true
+	config_button.disabled = true
+	confirm_button.disabled = true
