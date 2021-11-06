@@ -6,15 +6,8 @@ var Meteor = load("res://scenes/Meteor.tscn")
 var Helpers = load("res://scripts/helpers.gd")
 var is_table_active = false
 var current_overlay = null
-onready var current_platforms = [
-	$RotatingPlatforms/RotatingPlatform,
-	$RotatingPlatforms/RotatingPlatform2,
-]
-onready var current_meteors = [
-	$Meteors/Meteor,
-	$Meteors/Meteor2,
-	$Meteors/Meteor3,
-]
+onready var current_platforms = $RotatingPlatforms.get_children()
+onready var current_meteors = $Meteors.get_children()
 onready var hud = $HUD
 onready var space_station = $SpaceStation
 onready var config_overlay = $Overlays/ConfigOverlay
