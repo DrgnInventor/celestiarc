@@ -16,7 +16,6 @@ onready var current_meteors = [
 	$Meteors/Meteor3,
 ]
 onready var hud = $HUD
-onready var space_station = $SpaceStation
 onready var config_overlay = $Overlays/ConfigOverlay
 onready var forecast_overlay = $Overlays/ForecastOverlay
 onready var collidix_overlay = $Overlays/CollidixOverlay
@@ -26,8 +25,6 @@ onready var lose_overlay = $Overlays/LoseOverlay
 onready var alive_meteors = current_meteors.size()
 
 func _ready():
-	refresh_hp_label()
-	space_station.connect("hp_change", self, "_on_space_station_hp_change")
 	hud.connect("collidix_button_pressed", self, "_on_collidix_button_pressed")
 	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
@@ -62,10 +59,6 @@ func _on_meteor_destruction() -> void:
 func _on_meteor_collision() -> void:
 	status = Status.LOST
 	lose_handler()
-
-
-func _on_space_station_hp_change(_hp: int) -> void:
-	refresh_hp_label()
 
 
 func _on_config_button_pressed() -> void:
@@ -138,10 +131,6 @@ func hide_overlay() -> void:
 	# Since handling the same overlay button hides the overlay, this works
 	if current_overlay:
 		handle_overlay(current_overlay)
-
-
-func refresh_hp_label() -> void:
-	hud.set_hp_label(space_station.current_hp)
 
 
 func start_level() -> void:
