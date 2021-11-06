@@ -5,7 +5,6 @@ signal forecast_button_pressed
 signal collidix_button_pressed
 signal confirm_button_pressed
 const collidix_overlay = preload("res://scenes/CollidixOverlay.tscn")
-onready var hp_label = $Panel/HBoxContainer/HpLabel
 onready var config_button = $Panel/HBoxContainer/ConfigButton
 onready var forecast_button = $Panel/HBoxContainer/ForecastButton
 onready var collidix_button = $Panel/HBoxContainer/CollidixButton
@@ -40,7 +39,3 @@ func disable_buttons():
 	forecast_button.disabled = true
 	config_button.disabled = true
 	confirm_button.disabled = true
-	
-
-func set_hp_label(hp: int) -> void:
-	hp_label.text = "HP: %03d" % hp
