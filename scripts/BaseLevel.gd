@@ -87,6 +87,7 @@ func _on_rotation_changed(idx: int, value: float) -> void:
 
 func _on_confirmed() -> void:
 	hide_overlay()
+	hud.disable_buttons()
 	for p in current_platforms:
 		p.display_orbit(false)
 	start_level()
@@ -140,7 +141,7 @@ func start_level() -> void:
 func lose_handler() -> void:
 	handle_overlay("lose")
 	Globals.level_running = false
-	for m in current_meteors:
+	for m in $Meteors.get_children():
 		m.queue_free()
 
 
