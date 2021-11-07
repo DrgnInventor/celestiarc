@@ -42,15 +42,6 @@ func _ready():
 	collidix_overlay.gen_table(current_meteors, current_platforms)
 	forecast_overlay.gen_tables(current_meteors, current_platforms)
 	
-	var m = current_meteors[2] # Meteor whose velocity I want to change
-	var p = current_platforms[0] # Platform on which meteor will collide
-	var theta = 1.0765 # the rotational_offset I want to get
-	print("meteor name: ", m.name)
-	print("platform name: ", p.name)
-	p.rotational_offset = theta
-
-	for i in range(10):
-		print(Helpers.simple_calculate_velocity(m, p, i))
 
 func _process(_delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):
