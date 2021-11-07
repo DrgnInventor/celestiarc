@@ -41,6 +41,7 @@ func _ready():
 
 	collidix_overlay.gen_table(current_meteors, current_platforms)
 	forecast_overlay.gen_tables(current_meteors, current_platforms)
+	
 
 func _process(_delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):

@@ -8,13 +8,13 @@
 position = Vector2( 1022.85, 296.665 )
 
 [node name="RotatingPlatform" parent="RotatingPlatforms" index="0"]
-position = Vector2( 694, 330.225 )
+position = Vector2( 694.001, 330.225 )
 radius = 30.0
 rotational_velocity = 2.0
 canon_coord = Vector2( 126.182, 49.05 )
 
 [node name="RotatingPlatform2" parent="RotatingPlatforms" index="1"]
-position = Vector2( 694, 330.225 )
+position = Vector2( 694.001, 330.225 )
 radius = 39.7087
 rotational_velocity = 1.0
 canon_coord = Vector2( 126.182, 49.05 )

@@ -8,28 +8,28 @@
 position = Vector2( 1022.85, 296.665 )
 
 [node name="RotatingPlatform" parent="RotatingPlatforms" index="0"]
-position = Vector2( 789, 437.207 )
-radius = 30.0
+position = Vector2( 789, 412.008 )
+radius = 16.0
 rotational_velocity = 1.6
-canon_coord = Vector2( 143.455, 29.5988 )
+canon_coord = Vector2( 143.455, 34.1803 )
 
 [node name="RotatingPlatform2" parent="RotatingPlatforms" index="1"]
-position = Vector2( 789, 218.029 )
-radius = 30.0
+position = Vector2( 789.003, 245 )
+radius = 16.0
 rotational_velocity = 1.6
-canon_coord = Vector2( 143.455, 69.4492 )
+canon_coord = Vector2( 143.455, 64.5455 )
 
 [node name="Meteor" parent="Meteors" index="0"]
-position = Vector2( 0, 272.707 )
+position = Vector2( 0.6727, 272.707 )
 velocity = 16.0
-canon_coord = Vector2( 0, 59.5078 )
+canon_coord = Vector2( 0.122309, 59.5078 )
 
 [node name="Meteor2" parent="Meteors" index="1"]
-position = Vector2( 0, 330.293 )
+position = Vector2( 1.3454, 329.5 )
 velocity = 10.0
-canon_coord = Vector2( 0, 49.0376 )
+canon_coord = Vector2( 0.244618, 49.1818 )
 
 [node name="Meteor3" parent="Meteors" index="2"]
-position = Vector2( 0.672699, 385.029 )
+position = Vector2( 1.3454, 385.029 )
 velocity = 25.0
-canon_coord = Vector2( 0.122309, 39.0856 )
+canon_coord = Vector2( 0.244618, 39.0856 )
