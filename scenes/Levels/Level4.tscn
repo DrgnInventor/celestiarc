@@ -21,15 +21,15 @@ canon_coord = Vector2( 143.455, 64.5455 )
 
 [node name="Meteor" parent="Meteors" index="0"]
 position = Vector2( 0.6727, 272.707 )
-velocity = 16.0
+velocity = 27.7051
 canon_coord = Vector2( 0.122309, 59.5078 )
 
 [node name="Meteor2" parent="Meteors" index="1"]
 position = Vector2( 1.3454, 329.5 )
-velocity = 10.0
+velocity = 22.0536
 canon_coord = Vector2( 0.244618, 49.1818 )
 
 [node name="Meteor3" parent="Meteors" index="2"]
 position = Vector2( 1.3454, 385.029 )
-velocity = 25.0
+velocity = 44.4183
 canon_coord = Vector2( 0.244618, 39.0856 )
