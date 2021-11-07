@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Levels/BaseLevel.tscn" type="PackedScene" id=1]
+
+[node name="BaseLevel" instance=ExtResource( 1 )]
+
+[node name="SpaceStation" parent="." index="1"]
+position = Vector2( 1022.85, 296.665 )
+
+[node name="RotatingPlatform" parent="RotatingPlatforms" index="0"]
+position = Vector2( 406, 381.696 )
+radius = 20.0
+rotational_velocity = 1.6
+canon_coord = Vector2( 73.8182, 39.6916 )
+
+[node name="RotatingPlatform2" parent="RotatingPlatforms" index="1"]
+position = Vector2( 789.003, 296.665 )
+radius = 30.0
+rotational_velocity = 1.6
+canon_coord = Vector2( 143.455, 55.1518 )
+
+[node name="Meteor" parent="Meteors" index="0"]
+position = Vector2( 0, 179 )
+velocity = 27.8598
+canon_coord = Vector2( 0, 76.5455 )
+
+[node name="Meteor2" parent="Meteors" index="1"]
+position = Vector2( 71, 330.293 )
+velocity = 30.0
+canon_coord = Vector2( 12.9091, 49.0376 )
+
+[node name="Meteor3" parent="Meteors" index="2"]
+position = Vector2( 126.414, 431.9 )
+velocity = 66.0397
+canon_coord = Vector2( 22.9843, 30.5637 )

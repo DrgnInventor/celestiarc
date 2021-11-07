@@ -7,6 +7,10 @@
 [node name="ConfirmOverlay" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
+[node name="Title" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="0"]
+margin_right = 189.0
+text = "Confirmation"
+
 [node name="Content" parent="Panel/VBoxContainer" index="1"]
 margin_bottom = 95.0
 
@@ -27,6 +31,3 @@ margin_right = 34.0
 margin_bottom = 43.0
 size_flags_horizontal = 0
 text = "Yes"
-
-[node name="Nothing" parent="Panel/VBoxContainer/Content" index="1"]
-margin_bottom = 43.0
