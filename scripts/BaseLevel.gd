@@ -43,8 +43,8 @@ func _ready():
 	forecast_overlay.gen_tables(current_meteors, current_platforms)
 	
 	var m = current_meteors[0] # Meteor whose velocity I want to change
-	var p = current_platforms[1] # Platform on which meteor will collide
-	var theta = 1.6078 # the rotational_offset I want to get
+	var p = current_platforms[0] # Platform on which meteor will collide
+	var theta = 2.4488 # the rotational_offset I want to get
 	print("meteor name: ", m.name)
 	print("platform name: ", p.name)
 	p.rotational_offset = theta
