@@ -1,5 +1,6 @@
 extends Node2D
 
+const tutorial_level = preload("res://scenes/Levels/Tutorial.tscn")
 var current_level_obj: Node = null
 onready var main_menu = $MainMenuWrapper/MainMenu
 onready var level_menu = $MainMenuWrapper/LevelMenu
@@ -14,6 +15,8 @@ func _ready():
 	Globals.connect("next_level", self, "_on_next_level")
 	# warning-ignore:return_value_discarded
 	Globals.connect("switch_level", self, "_on_switch_level")
+	# warning-ignore:return_value_discarded
+	Globals.connect("switch_tutorial_level", self, "_on_switch_tutorial_level")
 	scan_level()
 
 
@@ -30,6 +33,11 @@ func _on_switch_level(n: int) -> void:
 	level_menu.visible = false
 
 
+func _on_switch_tutorial_level() -> void:
+	load_tutorial_level()
+	level_menu.visible = false
+
+
 func _on_play():
 	level_menu.refresh_buttons()
 	level_menu.visible = true
@@ -38,6 +46,19 @@ func _on_play():
 
 func _on_exit():
 	get_tree().quit()
+
+
+func load_tutorial_level():
+	if main_menu.visible:
+		main_menu.visible = false
+
+	if current_level_obj:
+		current_level_obj.queue_free()
+		current_level_obj = null
+
+	Globals.current_level_n = 1 # FIXME Hack
+	current_level_obj = tutorial_level.instance()
+	add_child(current_level_obj)
 
 
 func load_level(n: int):

@@ -1,0 +1,211 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "Default",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Welcome aboard!\nYour first job in this station is to guard against meteor attacks. \nThose happen fairly often here, so we have some rotating platforms to defend against. \nNow you may ask, why not just have force fields? \nThe answer is, we don’t have the budget and we have to use moving platforms instead.\nThat’s life for you.\n...\nAnyhow, to describe how it goes:\nFirst we get a report of meteors that are flying towards the station. \nWe also get information on the available platforms. \nThe task is to set the initial rotation (aka theta) for each platform,\nso that meteors crash into platforms and not into the space station.\nBefore you can operate the platforms you ought to know how the dashboard works.\nButtons before everything else!"
+		},
+		{
+			"action": "leaveall",
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_003"
+		},
+		{
+			"emit_signal": "goto_forecast",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You first want to start with the forecast view.\nIt contains information about the upcoming meteors, as well as platforms you will need to configure.\nYou can’t defend against what you don’t know, you know."
+		},
+		{
+			"emit_signal": "goto_config",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Moving on, there’s config view which opens up the configuration terminal which lets you change the initial rotation. \nNow you might ask, how to know which angles to use?\nFirst and foremost, brute-force is not the key.\nI once tried it. \nHad to be responsible for repairing that hole.\nI’d much rather watch paint dry, so it was not worth it. \n...\nFor that you use a formula and it’s such:"
+		},
+		{
+			"emit_signal": "goto_formula",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This formula required some trigonometric magic and I’ve added the proof which I’ve written back in the days when we first got the rotating platforms.\nI’ll be honest, while I kind of understand how to get there, I’m not certain I would reach this myself\neven if I’d be held at gunpoint. \nSo don’t worry if you don’t get how, just know that it works."
+		},
+		{
+			"emit_signal": "goto_collidix",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Also, you don’t even have to know it because we have Collidix – the machinery that does the calculations for us.\nJust press the Calculate button..."
+		},
+		{
+			"emit_signal": "start_calculation",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "...and you get the angles and all that’s left is to just take them and insert them in the configuration terminal.\nActually it’s not that easy.\nUsually there are 2 platforms and 3 meteors, so that means that at least 1 platform would need to take care of at least 2 meteors.\nEither 1 platform takes down 3 meteors or 1 platform takes down 2 and the other one takes down another meteor.\nKeep that in mind while picking the right angles!"
+		},
+		{
+			"emit_signal": "goto_confirm",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "When you have done your configuration, it’s time to go to the Confirm view and finalize your configuration.\nRemember,\nyou mess up, you clean up."
+		},
+		{
+			"emit_signal": "hide_overlay",
+			"event_id": "dialogic_040"
+		},
+		{
+			"action": "join",
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "...\nAlthough it would probably be better to show a more concrete example and the thought process behind the job."
+		},
+		{
+			"action": "leaveall",
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_003"
+		},
+		{
+			"emit_signal": "goto_forecast",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Okay, so first of all I take a look at the current situation.\nMeteors seem to have quite different velocities and so do platforms.\nThere's not much to be done here since I'm going to rely on calculated values anyways."
+		},
+		{
+			"emit_signal": "goto_collidix",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Since I had pressed the calculation button before, the results are already here.\nBy carefully examining the results I notice that [i]P2[/i] can deflect both [i]M1[/i] and [i]M3[/i] if we configure it to [i]5.5099[/i]\nSo that's what I'll do now."
+		},
+		{
+			"emit_signal": "goto_config",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Off to config."
+		},
+		{
+			"emit_signal": "configure_p2",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "And there we go."
+		},
+		{
+			"emit_signal": "goto_collidix",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alright, now we know that [i]M1[/i] and [i]M3[/i] are covered and thus P1 has to handle M2.\nI can take any value from [i]M2-P1[/i].\n[i]0.7023[/i] looks nice, so I'll take that."
+		},
+		{
+			"emit_signal": "goto_config",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "0.7023"
+		},
+		{
+			"emit_signal": "configure_p1",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Alright so the configuration is done"
+		},
+		{
+			"emit_signal": "hide_overlay",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1636727103.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "As you can see, the platforms have moved accordingly.\nIt's time to confirm and see them go!"
+		},
+		{
+			"emit_signal": "goto_confirm",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1636727172.json",
+		"name": "Tutorial"
+	}
+}

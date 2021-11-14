@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+## Install dialogic
+wget https://github.com/coppolaemilio/dialogic/archive/refs/tags/1.3.zip
+unzip 1.3.zip
+if [ -d "addons/dialogic" ]; then
+    rm -r "addons/dialogic"
+fi
+mv dialogic-1.3/addons/dialogic addons/dialogic
+mv dialogic-1.3/LICENSE addons/dialogic
+mkdir delete-me
+# In case something goes wrong, the files are thrown into temp folder
+mv dialogic-1.3 delete-me
+mv 1.3.zip delete-me

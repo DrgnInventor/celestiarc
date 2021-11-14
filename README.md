@@ -15,11 +15,16 @@ Font "Transpass", [SIL OPEN FONT LICENSE](assets/fonts/transpass/LICENSE-OFL.txt
 - Copyright (c) 2015 Red Hat, Inc.
 - Copyright (c) 2019 by Cristiano Sobral (cssobral2013@gmail.com).
 
+## Install
+
+1. Download "Dialogic" by executing `./INSTALL`
+
 ## Dev Install
 
-1. Install "Gut - Godot Unit Testing" from the AssetLib.
-2. `chmod +x run_test`
-3. `./run_test`
+1. Go through "Install" steps
+2. Install "Gut - Godot Unit Testing" from the AssetLib.
+3. `chmod +x run_test`
+4.. `./run_test`
    For this to work make sure:
    - `godot` can be launched in the shell
    - Script is run at the project root

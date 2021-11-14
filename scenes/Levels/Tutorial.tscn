@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Levels/Level1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/TutorialLevel.gd" type="Script" id=2]
+
+[node name="Tutorial" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="RotatingPlatform" parent="RotatingPlatforms" index="0"]
+position = Vector2( 689.188, 264.478 )
+
+[node name="RotatingPlatform2" parent="RotatingPlatforms" index="1"]
+position = Vector2( 689.188, 431.474 )

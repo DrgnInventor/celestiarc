@@ -6,6 +6,7 @@ var Meteor = load("res://scenes/Meteor.tscn")
 var Helpers = load("res://scripts/helpers.gd")
 var is_table_active = false
 var current_overlay = null
+var input_blocked = false # When true, forbid input (except dialog)
 onready var current_platforms = [
 	$RotatingPlatforms/RotatingPlatform,
 	$RotatingPlatforms/RotatingPlatform2,
@@ -22,6 +23,7 @@ onready var collidix_overlay = $Overlays/CollidixOverlay
 onready var confirm_overlay = $Overlays/ConfirmOverlay
 onready var win_overlay = $Overlays/WinOverlay
 onready var lose_overlay = $Overlays/LoseOverlay
+onready var formula_overlay = $Overlays/FormulaOverlay
 onready var alive_meteors = current_meteors.size()
 
 func _ready():
@@ -44,7 +46,7 @@ func _ready():
 	
 
 func _process(_delta: float):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if not input_blocked and Input.is_action_just_pressed("ui_cancel"):
 		hide_overlay()
 
 
@@ -110,6 +112,7 @@ func string_to_overlay(name: String):
 		"confirm": return confirm_overlay
 		"win": return win_overlay
 		"lose": return lose_overlay
+		"formula": return formula_overlay
 		_: push_error('Invalid overlay name %s!' % name)
 
 
@@ -148,3 +151,4 @@ func lose_handler() -> void:
 func win_handler() -> void:
 	handle_overlay("win")
 	Globals.level_running = false
+	Globals.emit_signal("win")

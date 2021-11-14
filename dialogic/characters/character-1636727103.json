@@ -1,0 +1,20 @@
+{
+	"color": "#ffffffff",
+	"description": "Main NPC",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1636727103.json",
+	"mirror_portraits": true,
+	"name": "Claudia",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 70,
+	"offset_y": -170,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://assets/claudia/default.png"
+		}
+	],
+	"scale": 100
+}

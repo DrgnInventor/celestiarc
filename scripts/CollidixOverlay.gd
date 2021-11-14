@@ -10,7 +10,9 @@ onready var shell_label = $Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBack
 
 
 func _ready() -> void:
-	calculate_button.connect("pressed", self, "_calculate_button_pressed")
+	calculate_button.connect("pressed", self, "_on_start_calculation")
+	# warning-ignore:return_value_discarded
+	Globals.connect("start_calculation", self, "_on_start_calculation")
 	table.visible = false
 	shell_label.text = ""
 	shell_write_line("$ ")
@@ -47,7 +49,7 @@ func _make_fmt_dict(meteor: Node, platform: Node) -> Dictionary:
 	return new_values
 
 
-func _calculate_button_pressed() -> void:
+func _on_start_calculation() -> void:
 	for line in queued_lines:
 		shell_write_line(line)
 	queued_lines = []

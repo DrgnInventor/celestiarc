@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/BaseOverlay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/formulas/theta2.png" type="Texture" id=2]
+[ext_resource path="res://assets/formulas/theta1.png" type="Texture" id=3]
+[ext_resource path="res://assets/formulas/theta-condition2.png" type="Texture" id=4]
+[ext_resource path="res://assets/formulas/theta-condition1.png" type="Texture" id=5]
+
+[node name="FormulaOverlay" instance=ExtResource( 1 )]
+
+[node name="Title" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="0"]
+margin_right = 135.0
+text = "Formulas"
+
+[node name="Content" parent="Panel/VBoxContainer" index="1"]
+margin_bottom = 203.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Content" index="0"]
+margin_left = 20.0
+margin_right = 748.0
+margin_bottom = 151.0
+custom_constants/separation = 10
+
+[node name="Theta1" type="TextureRect" parent="Panel/VBoxContainer/Content/VBoxContainer" index="0"]
+margin_right = 728.0
+margin_bottom = 42.0
+texture = ExtResource( 3 )
+
+[node name="Theta2" type="TextureRect" parent="Panel/VBoxContainer/Content/VBoxContainer" index="1"]
+margin_top = 52.0
+margin_right = 728.0
+margin_bottom = 94.0
+texture = ExtResource( 2 )
+
+[node name="Condition1" type="TextureRect" parent="Panel/VBoxContainer/Content/VBoxContainer" index="2"]
+margin_top = 104.0
+margin_right = 728.0
+margin_bottom = 123.0
+texture = ExtResource( 5 )
+
+[node name="Condition2" type="TextureRect" parent="Panel/VBoxContainer/Content/VBoxContainer" index="3"]
+margin_top = 133.0
+margin_right = 728.0
+margin_bottom = 151.0
+texture = ExtResource( 4 )
