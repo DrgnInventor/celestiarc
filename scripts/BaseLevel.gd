@@ -29,12 +29,9 @@ func _ready():
 	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
-	hud.connect("exit_button_pressed", self, "_on_exit")
-	hud.connect("menu_button_pressed", self, "_on_menu_button_pressed")
 	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
 	confirm_overlay.connect("confirmed", self, "_on_confirmed")
-	connect_overlay_buttons()
-	
+
 	for m in current_meteors:
 		m.connect("hit", self, "_on_meteor_collision")
 		m.connect("tree_exited", self, "_on_meteor_destruction")
@@ -49,13 +46,6 @@ func _ready():
 func _process(_delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):
 		hide_overlay()
-
-
-func connect_overlay_buttons() -> void:
-	collidix_overlay.connect("close_overlay", self, "hide_overlay")
-	config_overlay.connect("close_overlay", self, "hide_overlay")
-	forecast_overlay.connect("close_overlay", self, "hide_overlay")
-	confirm_overlay.connect("close_overlay", self, "hide_overlay")
 
 
 func _on_meteor_destruction() -> void:
@@ -86,10 +76,6 @@ func _on_collidix_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	handle_overlay("confirm")
-
-
-func _on_menu_button_pressed() -> void:
-	level_menu()
 
 
 func _on_rotation_changed(idx: int, value: float) -> void:
@@ -167,6 +153,11 @@ func win_handler() -> void:
 func _on_exit():
 	get_tree().quit()
 	
+<<<<<<< HEAD
 	
 func level_menu() -> void:
 	get_tree().change_scene("res://scenes/LevelMenu.tscn")
+=======
+func menu() -> void:
+	get_tree().change_scene()
+>>>>>>> parent of ef55650 (close overlay buttons)
