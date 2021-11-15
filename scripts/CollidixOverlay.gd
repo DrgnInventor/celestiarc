@@ -1,5 +1,6 @@
 extends Control
 
+signal close_overlay
 const IconifiedTextInfo = preload("res://scripts/IconifiedTextInfo.gd")
 const ArrowsCounterClockwiseIcon = preload("res://assets/phospor-icons/arrows-counter-clockwise.png")
 var queued_lines = [] # Lines that are about to be printed to the shell
@@ -7,7 +8,7 @@ onready var table = $Panel/VBoxContainer/Content/Wrapper/Wrapper/CollidixTable
 onready var calculate_button = $Panel/VBoxContainer/Content/Wrapper/CalculateButton
 onready var shell_scroll = $Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground/ScrollContainer
 onready var shell_label = $Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground/ScrollContainer/Text
-
+onready var close_overlay_button = $Panel/VBoxContainer/TitleBar/HBoxContainer/CloseOverlay
 
 func _ready() -> void:
 	calculate_button.connect("pressed", self, "_on_start_calculation")
@@ -16,6 +17,7 @@ func _ready() -> void:
 	table.visible = false
 	shell_label.text = ""
 	shell_write_line("$ ")
+	close_overlay_button.connect("pressed", self, "_on_close_overlay_pressed")
 
 
 # Argument is not typed because the code won't be run otherwise
@@ -192,3 +194,7 @@ func shell_line_gen(meteor_arr: Array, platform_arr: Array) -> Array:
 	]
 
 	return lines
+
+
+func _on_close_overlay_pressed():
+	emit_signal("close_overlay")

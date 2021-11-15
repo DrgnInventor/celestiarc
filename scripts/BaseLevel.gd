@@ -33,6 +33,10 @@ func _ready():
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
 	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
 	confirm_overlay.connect("confirmed", self, "_on_confirmed")
+	collidix_overlay.connect("close_overlay", self, "hide_overlay")
+	config_overlay.connect("close_overlay", self, "hide_overlay")
+	forecast_overlay.connect("close_overlay", self, "hide_overlay")
+	confirm_overlay.connect("close_overlay", self, "hide_overlay")
 
 	for m in current_meteors:
 		m.connect("hit", self, "_on_meteor_collision")
