@@ -164,7 +164,6 @@ func win_handler() -> void:
 
 
 func level_menu() -> void:
-	get_tree().current_scene.queue_free()
 	Globals.emit_signal("show_level_menu")
 
 
