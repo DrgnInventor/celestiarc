@@ -152,12 +152,7 @@ func win_handler() -> void:
 
 func _on_exit():
 	get_tree().quit()
-	
-<<<<<<< HEAD
+
 	
 func level_menu() -> void:
 	get_tree().change_scene("res://scenes/LevelMenu.tscn")
-=======
-func menu() -> void:
-	get_tree().change_scene()
->>>>>>> parent of ef55650 (close overlay buttons)
