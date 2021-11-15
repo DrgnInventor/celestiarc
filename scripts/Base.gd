@@ -18,6 +18,7 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	Globals.connect("switch_tutorial_level", self, "_on_switch_tutorial_level")
 	scan_level()
+	Globals.connect("show_level_menu", self, "_show_level_menu")
 
 
 func _on_retry():
@@ -84,3 +85,7 @@ func scan_level(level_n: int = 1) -> void:
 	if ResourceLoader.exists(level_path):
 		Globals.levels.append(load(level_path))
 		scan_level(level_n + 1)
+
+
+func _show_level_menu():
+	level_menu.visible = true
