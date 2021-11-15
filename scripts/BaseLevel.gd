@@ -148,3 +148,10 @@ func lose_handler() -> void:
 func win_handler() -> void:
 	handle_overlay("win")
 	Globals.level_running = false
+
+
+func _on_exit():
+	get_tree().quit()
+	
+func menu() -> void:
+	get_tree().change_scene()

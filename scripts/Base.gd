@@ -63,3 +63,4 @@ func scan_level(level_n: int = 1) -> void:
 	if ResourceLoader.exists(level_path):
 		Globals.levels.append(load(level_path))
 		scan_level(level_n + 1)
+		
