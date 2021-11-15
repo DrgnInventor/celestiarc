@@ -35,9 +35,21 @@ VScrollBar/styles/scroll_focus = null
 [node name="CollidixOverlay" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="Title" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="0"]
-margin_right = 180.0
-text = "Collidix v0.1"
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/TitleBar" index="1"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 758.0
+margin_bottom = 48.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseOverlayButton" type="Button" parent="Panel/VBoxContainer/TitleBar/HBoxContainer2" index="0"]
+margin_left = 728.0
+margin_right = 748.0
+margin_bottom = 38.0
+text = "X"
 
 [node name="Content" parent="Panel/VBoxContainer" index="1"]
 margin_bottom = 182.0

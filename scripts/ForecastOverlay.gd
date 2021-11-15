@@ -1,5 +1,6 @@
 extends Control
 
+signal close_overlay
 const IconifiedTextInfo = preload("res://scripts/IconifiedTextInfo.gd")
 const ArrowRightIcon = preload("res://assets/phospor-icons/arrow-right.png")
 const MapPinLineIcon = preload("res://assets/phospor-icons/map-pin-line.png")
@@ -7,6 +8,11 @@ const ArrowsOutSimpleIcon = preload("res://assets/phospor-icons/arrows-out-simpl
 const ArrowsCounterClockwiseIcon = preload("res://assets/phospor-icons/arrows-counter-clockwise.png")
 onready var meteor_table = $Panel/VBoxContainer/Content/Wrapper/MeteorTable
 onready var platform_table = $Panel/VBoxContainer/Content/Wrapper/PlatformTable
+onready var close_overlay_button = $Panel/VBoxContainer/TitleBar/HBoxContainer2/CloseOverlayButton
+
+
+func _ready() -> void:
+	close_overlay_button.connect("pressed",self,"_on_close_overlay_button_pressed")
 
 
 func _process_table_data(table: Node, data: Array) -> void:
@@ -64,3 +70,7 @@ func gen_platform_table(platform_arr: Array) -> void:
 func gen_tables(meteor_arr: Array, platform_arr: Array) -> void:
 	gen_meteor_table(meteor_arr)
 	gen_platform_table(platform_arr)
+
+
+func _on_close_overlay_button_pressed():
+	emit_signal("close_overlay")

@@ -1,7 +1,9 @@
 extends Control
 
 signal rotation_changed(idx, value)
+signal close_overlay
 onready var base = $Panel/VBoxContainer/Content/GridContainer
+onready var close_overlay_button = $Panel/VBoxContainer/TitleBar/HBoxContainer2/CloseOverlayButton
 onready var line_edits = [
 	base.get_node("LineEdit"),
 	base.get_node("LineEdit2")
@@ -13,6 +15,7 @@ func _ready():
 	line_edits[0].connect("focus_exited", self, "_on_line_edit_0_new_text")
 	line_edits[1].connect("text_entered", self, "_on_line_edit_1_new_text")
 	line_edits[1].connect("focus_exited", self, "_on_line_edit_1_new_text")
+	close_overlay_button.connect("pressed",self,"_on_close_overlay_button_pressed")
 
 
 func _on_line_edit_0_new_text(_ignore:Object = null) -> void:
@@ -30,3 +33,6 @@ func handle_row(idx: int) -> void:
 	# it is good UX to reflect what value is actually applied
 	line_edits[idx].text = str(rotations[idx])
 	emit_signal("rotation_changed", idx, rotations[idx])
+
+func _on_close_overlay_button_pressed():
+	emit_signal("close_overlay")
