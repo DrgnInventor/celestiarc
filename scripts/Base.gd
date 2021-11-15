@@ -88,4 +88,6 @@ func scan_level(level_n: int = 1) -> void:
 
 
 func _show_level_menu():
+	current_level_obj.queue_free()
+	current_level_obj = null
 	level_menu.visible = true

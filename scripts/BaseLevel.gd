@@ -164,6 +164,7 @@ func win_handler() -> void:
 
 
 func level_menu() -> void:
+	
 	Globals.emit_signal("show_level_menu")
 
 
