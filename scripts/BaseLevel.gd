@@ -169,4 +169,4 @@ func _on_exit():
 	
 	
 func level_menu() -> void:
-	emit_signal("play")
+	get_tree().change_scene("res://scenes/LevelMenu.tscn")

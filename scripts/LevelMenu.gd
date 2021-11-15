@@ -5,6 +5,7 @@ onready var button_container = $Panel/MarginContainer/VBoxContainer/ButtonContai
 
 func _ready() -> void:
 	Helpers.kill_children(button_container)
+	refresh_buttons()
 
 
 func _on_button_pressed(n: int) -> void:

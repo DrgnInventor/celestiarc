@@ -63,3 +63,17 @@ margin_top = 28.0
 margin_right = 88.0
 margin_bottom = 52.0
 text = "0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" index="1"]
+margin_left = 13.0
+margin_top = 394.919
+margin_right = 87.0
+margin_bottom = 433.919
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmButton" type="Button" parent="Panel/HBoxContainer" index="0"]
+margin_right = 41.0
+margin_bottom = 39.0
+text = "Save"
