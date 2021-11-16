@@ -83,7 +83,7 @@ func _on_confirm_button_pressed() -> void:
 
 
 func _on_menu_button_pressed() -> void:
-	level_menu()
+	Globals.emit_signal("show_level_menu")
 
 func _on_exit_button_pressed() -> void:
 	exit_game()
@@ -161,11 +161,6 @@ func win_handler() -> void:
 	handle_overlay("win")
 	Globals.level_running = false
 	Globals.emit_signal("win")
-
-
-func level_menu() -> void:
-	
-	Globals.emit_signal("show_level_menu")
 
 
 func exit_game() -> void:
