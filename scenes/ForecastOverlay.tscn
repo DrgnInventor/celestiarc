@@ -17,12 +17,6 @@ margin_right = 794.0
 margin_right = 127.0
 text = "Forecast"
 
-[node name="CloseOverlay" type="Button" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="1"]
-margin_left = 131.0
-margin_right = 151.0
-margin_bottom = 38.0
-text = "X"
-
 [node name="Content" parent="Panel/VBoxContainer" index="1"]
 margin_right = 804.0
 margin_bottom = 227.0

@@ -65,6 +65,12 @@ margin_bottom = 38.0
 custom_fonts/font = SubResource( 2 )
 text = "Title"
 
+[node name="CloseOverlay" type="Button" parent="Panel/VBoxContainer/TitleBar/HBoxContainer"]
+margin_left = 69.0
+margin_right = 89.0
+margin_bottom = 38.0
+text = "X"
+
 [node name="Content" type="MarginContainer" parent="Panel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 768.0
