@@ -11,6 +11,7 @@ signal start_calculation # A request to start Collidix calculation
 # Value is string because it is treated like it came directly from LineEdit
 signal change_platform_config(index, value)
 signal win # Shown when a level has been won
+signal close_overlay
 # Shows whether level has been started and whether physics need to be applied
 var level_running = false
 const epsilon = 0.0001
