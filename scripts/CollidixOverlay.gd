@@ -8,6 +8,7 @@ onready var calculate_button = $Panel/VBoxContainer/Content/Wrapper/CalculateBut
 onready var shell_scroll = $Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground/ScrollContainer
 onready var shell_label = $Panel/VBoxContainer/Content/Wrapper/Wrapper/ShellBackground/ScrollContainer/Text
 
+
 func _ready() -> void:
 	calculate_button.connect("pressed", self, "_on_start_calculation")
 	# warning-ignore:return_value_discarded
