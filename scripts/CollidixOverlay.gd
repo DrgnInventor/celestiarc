@@ -192,5 +192,5 @@ func shell_line_gen(meteor_arr: Array, platform_arr: Array) -> Array:
 		"Calculations are finished!",
 		"$ ",
 	]
-	
+
 	return lines
