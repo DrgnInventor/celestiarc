@@ -31,6 +31,8 @@ func _ready():
 	hud.connect("forecast_button_pressed", self, "_on_forecast_button_pressed")
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
+	hud.connect("menu_button_pressed", self, "_on_menu_button_pressed")
+	hud.connect("exit_button_pressed", self, "_on_exit_button_pressed")
 	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
 	confirm_overlay.connect("confirmed", self, "_on_confirmed")
 
@@ -78,6 +80,13 @@ func _on_collidix_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	handle_overlay("confirm")
+
+
+func _on_menu_button_pressed() -> void:
+	Globals.emit_signal("show_level_menu")
+
+func _on_exit_button_pressed() -> void:
+	exit_game()
 
 
 func _on_rotation_changed(idx: int, value: float) -> void:
@@ -152,3 +161,7 @@ func win_handler() -> void:
 	handle_overlay("win")
 	Globals.level_running = false
 	Globals.emit_signal("win")
+
+
+func exit_game() -> void:
+	get_tree().quit()

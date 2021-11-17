@@ -54,3 +54,21 @@ text = "Confirm"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MenuButton" type="Button" parent="Panel/HBoxContainer"]
+margin_left = 278.0
+margin_right = 326.0
+margin_bottom = 40.0
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="Panel/HBoxContainer"]
+margin_left = 336.0
+margin_right = 371.0
+margin_bottom = 40.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
