@@ -10,7 +10,7 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
--"class": "DTS",
+"class": "DTS",
 "language": "GDScript",
 "path": "res://addons/dialogic/Localization/translation_service.gd"
 }, {
@@ -55,7 +55,7 @@ _global_script_classes=[ {
 "path": "res://scripts/coord_util.gd"
 } ]
 _global_script_class_icons={
--"DTS": "",
+"DTS": "",
 "Dialogic": "",
 "DialogicBackgroundMusic": "",
 "DialogicDefinitionsUtil": "",
