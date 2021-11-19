@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/proof-ingame.jpeg-179d86c423b8e4d63a26ffdcb7e6471d.stex"
+path="res://.import/proof-ingame.png-67bd07f7ca8665f7a27bd098b6159762.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/proof-ingame.jpeg"
-dest_files=[ "res://.import/proof-ingame.jpeg-179d86c423b8e4d63a26ffdcb7e6471d.stex" ]
+source_file="res://assets/proof-ingame.png"
+dest_files=[ "res://.import/proof-ingame.png-67bd07f7ca8665f7a27bd098b6159762.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
