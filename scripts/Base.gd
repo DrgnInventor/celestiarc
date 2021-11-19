@@ -48,6 +48,7 @@ func _on_play():
 
 
 func _exit_extra():
+	main_menu.visible = true
 	extra_menu.visible = false
 
 
