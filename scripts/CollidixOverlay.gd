@@ -51,7 +51,9 @@ func _make_fmt_dict(meteor: Node, platform: Node) -> Dictionary:
 
 func _on_start_calculation() -> void:
 	for line in queued_lines:
+		yield(get_tree().create_timer(.04), "timeout")
 		shell_write_line(line)
+		shell_scroll.set_v_scroll(999999)
 	queued_lines = []
 	table.visible = true
 	# There has to be a small wait time before scrolling. Most likely the lines

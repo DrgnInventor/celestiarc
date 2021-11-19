@@ -7,6 +7,7 @@ var Helpers = load("res://scripts/helpers.gd")
 var is_table_active = false
 var current_overlay = null
 var input_blocked = false # When true, forbid input (except dialog)
+var indicators = []
 onready var current_platforms = [
 	$RotatingPlatforms/RotatingPlatform,
 	$RotatingPlatforms/RotatingPlatform2,
@@ -24,6 +25,7 @@ onready var confirm_overlay = $Overlays/ConfirmOverlay
 onready var win_overlay = $Overlays/WinOverlay
 onready var lose_overlay = $Overlays/LoseOverlay
 onready var formula_overlay = $Overlays/FormulaOverlay
+onready var in_level_menu_overlay = $Overlays/InLevelMenuOverlay
 onready var alive_meteors = current_meteors.size()
 
 func _ready():
@@ -32,17 +34,20 @@ func _ready():
 	hud.connect("config_button_pressed", self, "_on_config_button_pressed")
 	hud.connect("confirm_button_pressed", self, "_on_confirm_button_pressed")
 	hud.connect("menu_button_pressed", self, "_on_menu_button_pressed")
-	hud.connect("exit_button_pressed", self, "_on_exit_button_pressed")
 	config_overlay.connect("rotation_changed", self, "_on_rotation_changed")
 	confirm_overlay.connect("confirmed", self, "_on_confirmed")
 	Globals.connect("close_overlay", self, "hide_overlay")
 
-	for m in current_meteors:
+	for i in range(current_meteors.size()):
+		var m = current_meteors[i]
 		m.connect("hit", self, "_on_meteor_collision")
 		m.connect("tree_exited", self, "_on_meteor_destruction")
+		add_meteor_indicator(m, "M" + str(i + 1))
 
-	for p in current_platforms:
+	for i in range(current_platforms.size()):
+		var p = current_platforms[i]
 		p.display_orbit(true)
+		add_platform_indicator(p, "P" + str(i + 1))
 
 	collidix_overlay.gen_table(current_meteors, current_platforms)
 	forecast_overlay.gen_tables(current_meteors, current_platforms)
@@ -50,7 +55,11 @@ func _ready():
 
 func _process(_delta: float):
 	if not input_blocked and Input.is_action_just_pressed("ui_cancel"):
-		hide_overlay()
+		# For UX; provides an intuitive way to escape the level
+		if not current_overlay:
+			handle_overlay("in_level_menu")
+		else:
+			hide_overlay()
 
 
 func _on_meteor_destruction() -> void:
@@ -84,10 +93,7 @@ func _on_confirm_button_pressed() -> void:
 
 
 func _on_menu_button_pressed() -> void:
-	Globals.emit_signal("show_level_menu")
-
-func _on_exit_button_pressed() -> void:
-	exit_game()
+	handle_overlay("in_level_menu")
 
 
 func _on_rotation_changed(idx: int, value: float) -> void:
@@ -100,8 +106,17 @@ func _on_rotation_changed(idx: int, value: float) -> void:
 func _on_confirmed() -> void:
 	hide_overlay()
 	hud.disable_buttons()
+
 	for p in current_platforms:
 		p.display_orbit(false)
+		p.display_rotational_velocity_vector(false)
+
+	for m in current_meteors:
+		m.display_velocity_vector(false)
+
+	for indicator in indicators:
+		indicator.queue_free()
+
 	start_level()
 
 
@@ -123,6 +138,7 @@ func string_to_overlay(name: String):
 		"win": return win_overlay
 		"lose": return lose_overlay
 		"formula": return formula_overlay
+		"in_level_menu": return in_level_menu_overlay
 		_: push_error('Invalid overlay name %s!' % name)
 
 
@@ -164,5 +180,21 @@ func win_handler() -> void:
 	Globals.emit_signal("win")
 
 
-func exit_game() -> void:
-	get_tree().quit()
+func create_indicator_label(text: String) -> Label:
+	var label = Helpers._create_label(text)
+	label.set("custom_colors/font_color", Color(1.0, 1.0, 1.0, 0.8))
+	return label
+
+
+func add_meteor_indicator(node: Node2D, text: String) -> void:
+	var label = create_indicator_label(text)
+	label.rect_position += Vector2(0, 10)
+	node.add_child(label)
+	indicators.append(label)
+
+
+func add_platform_indicator(node: Node2D, text: String) -> void:
+	var label = create_indicator_label(text)
+	label.rect_position += Vector2(0, 10)
+	node.collider.add_child(label)
+	indicators.append(label)

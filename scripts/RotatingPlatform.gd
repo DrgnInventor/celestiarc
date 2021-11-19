@@ -13,6 +13,7 @@ export(float, 0, 7, 0.0001) var rotational_offset = 0.00 \
 export var canon_coord = Vector2(0.0, 0.0) setget set_canon_coord
 onready var collider = $Collider
 onready var orbit_line = $OrbitLine
+onready var rotational_velocity_vector = $Collider/RotationalVelocityVector
 # Variable that is used to listen for position change
 onready var tool_last_global_position = global_position
 
@@ -22,6 +23,8 @@ func _ready():
 	if not Engine.editor_hint:
 		display_orbit(false)
 	refresh_orbit()
+	# This vector represents linear velocity: v = omega * R
+	rotational_velocity_vector.rect_size.x = rotational_velocity * radius
 
 
 func _process(_delta: float) -> void:
@@ -96,3 +99,7 @@ func set_canon_coord(value: Vector2) -> void:
 
 func display_orbit(b: bool):
 	orbit_line.visible = b
+
+
+func display_rotational_velocity_vector(b: bool):
+	rotational_velocity_vector.visible = b

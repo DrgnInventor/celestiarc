@@ -147,3 +147,7 @@ static func v2_round_fmt(v2: Vector2) -> String:
 
 static func can_switch_to_next_level() -> bool:
 	return Globals.current_level_n < Globals.levels.size()
+
+
+static func get_level_count() -> int:
+	return Globals.levels.size()
