@@ -60,10 +60,17 @@ margin_bottom = 206.0
 custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
-[node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="ExtraButton" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 211.0
 margin_right = 250.0
 margin_bottom = 236.0
+custom_fonts/font = ExtResource( 2 )
+text = "Extras"
+
+[node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
+margin_top = 241.0
+margin_right = 250.0
+margin_bottom = 266.0
 custom_fonts/font = ExtResource( 2 )
 text = "Exit"
 __meta__ = {

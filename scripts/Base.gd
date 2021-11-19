@@ -4,11 +4,12 @@ const tutorial_level = preload("res://scenes/Levels/Tutorial.tscn")
 var current_level_obj: Node = null
 onready var main_menu = $MainMenuWrapper/MainMenu
 onready var level_menu = $MainMenuWrapper/LevelMenu
-
+onready var extra_menu = $MainMenuWrapper/ExtraMenu
 
 func _ready():
 	main_menu.connect("play", self, "_on_play")
 	main_menu.connect("exit", self, "_on_exit")
+	main_menu.connect("extra", self, "_on_extra")
 	# warning-ignore:return_value_discarded
 	Globals.connect("retry", self, "_on_retry")
 	# warning-ignore:return_value_discarded
@@ -47,6 +48,11 @@ func _on_play():
 
 func _on_exit():
 	get_tree().quit()
+
+
+func _on_extra():
+	extra_menu.visible = true
+	main_menu.visible = false
 
 
 func load_tutorial_level():

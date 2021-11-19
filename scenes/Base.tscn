@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Base.gd" type="Script" id=2]
 [ext_resource path="res://scenes/LevelMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ExtraMenu.tscn" type="PackedScene" id=4]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 2 )
@@ -13,3 +14,7 @@ script = ExtResource( 2 )
 
 [node name="LevelMenu" parent="MainMenuWrapper" instance=ExtResource( 3 )]
 visible = false
+
+[node name="ExtraMenu" parent="MainMenuWrapper" instance=ExtResource( 4 )]
+visible = false
+script = null
