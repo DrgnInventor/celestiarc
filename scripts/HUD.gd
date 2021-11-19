@@ -52,4 +52,4 @@ func disable_buttons():
 	forecast_button.disabled = true
 	config_button.disabled = true
 	confirm_button.disabled = true
-	menu_button.disabled = true
+	# menu button should not be disabled
