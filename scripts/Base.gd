@@ -10,7 +10,7 @@ func _ready():
 	main_menu.connect("play", self, "_on_play")
 	main_menu.connect("exit", self, "_on_exit")
 	main_menu.connect("extra", self, "_on_extra")
-	extra_menu.connect("close_extra", self, "_exit_extra")
+	Globals.connect("close_extra", self, "_exit_extra")
 	# warning-ignore:return_value_discarded
 	Globals.connect("retry", self, "_on_retry")
 	# warning-ignore:return_value_discarded

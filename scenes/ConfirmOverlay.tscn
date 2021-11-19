@@ -11,6 +11,9 @@ script = ExtResource( 3 )
 margin_right = 189.0
 text = "Confirmation"
 
+[node name="Blank" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="1"]
+margin_left = 193.0
+
 [node name="Content" parent="Panel/VBoxContainer" index="1"]
 margin_bottom = 95.0
 

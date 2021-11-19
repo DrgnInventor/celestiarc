@@ -12,6 +12,7 @@ signal start_calculation # A request to start Collidix calculation
 signal change_platform_config(index, value)
 signal win # Shown when a level has been won
 signal close_overlay
+signal close_extra
 # Shows whether level has been started and whether physics need to be applied
 signal show_level_menu
 var level_running = false
