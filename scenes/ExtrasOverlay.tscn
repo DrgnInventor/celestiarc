@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/math-proof.jpeg" type="Texture" id=1]
+[ext_resource path="res://scenes/BaseOverlay.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+border_width_left = 2
+border_width_top = 15
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=5]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 2 )
+VScrollBar/styles/grabber_highlight = SubResource( 3 )
+VScrollBar/styles/grabber_pressed = SubResource( 4 )
+VScrollBar/styles/scroll = null
+VScrollBar/styles/scroll_focus = null
+
+[node name="BaseOverlay" instance=ExtResource( 2 )]
+
+[node name="Title" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="0"]
+margin_right = 95.0
+text = "Extras"
+
+[node name="Blank" parent="Panel/VBoxContainer/TitleBar/HBoxContainer" index="1"]
+margin_left = 99.0
+
+[node name="Content" parent="Panel/VBoxContainer" index="1"]
+margin_bottom = 152.0
+
+[node name="Wrapper" type="HBoxContainer" parent="Panel/VBoxContainer/Content" index="0"]
+margin_left = 20.0
+margin_right = 748.0
+margin_bottom = 100.0
+custom_constants/separation = 30
+
+[node name="ShellBackground" type="Panel" parent="Panel/VBoxContainer/Content/Wrapper" index="0"]
+margin_left = 100.0
+margin_right = 624.0
+margin_bottom = 354.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer/Content/Wrapper/ShellBackground" index="0"]
+anchor_left = -0.033296
+anchor_top = -0.0463959
+anchor_right = -0.033296
+anchor_bottom = -0.0463959
+margin_left = 28.2395
+margin_top = 16.4242
+margin_right = 68.2395
+margin_bottom = 30.4242
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Proof"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/Content/Wrapper/ShellBackground" index="1"]
+anchor_left = 0.512
+anchor_top = 0.18
+anchor_right = 0.512
+anchor_bottom = 0.18
+margin_left = -257.288
+margin_top = -47.72
+margin_right = 246.712
+margin_bottom = 288.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Panel/VBoxContainer/Content/Wrapper/ShellBackground/ScrollContainer" index="0"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Panel/VBoxContainer/Content/Wrapper/ShellBackground/ScrollContainer/Control" index="0"]
+position = Vector2( 253.573, 769.502 )
+scale = Vector2( 1, 0.958811 )
+texture = ExtResource( 1 )
